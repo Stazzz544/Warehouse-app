@@ -7,15 +7,49 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.min.css?07.12.2021v1">
 	<title>Warehouse</title>
-
-
-
 </head>
 
 <body>
-	
-	<script src="js/script.min.js?07.12.2021"></script>
+
+	<div class="self-card">
+		<div class="self-card__wrapper">
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="name">Имя</label>
+				<input class="self-card__input" type="text" id='name'>
+			</div>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="surname">Фамилия</label>
+				<input class="self-card__input" type="text" id='surname'>
+			</div>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="patronymic">Отчество</label>
+				<input  class="self-card__input" type="text" id='patronymic'>
+			</div>
+			<br>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="workplace">Структурное подразделение</label>
+				<input class="self-card__input" type="text" id='workplace'>
+			</div>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="workNumber">Табельный номер</label>
+				<input class="self-card__input" type="text" id='workNumber'>
+			</div>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="profession">Профессия</label>
+				<input class="self-card__input" type="text" id='profession'>
+			</div>
+			<div class="self-card__input-wrapper">
+				<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>
+				<input class="self-card__input" type="text" id='dateOfStartInCompany'>
+			</div>
+
+			<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
+		</div>
+
+		<button class="self-card__save-btn" id='getSelfCard'>Получить данные</button>
+	</div>
+
+	<script src="js/script.min.js?07.12.2021" type="module"></script>
 </body>
 
 </html>
-

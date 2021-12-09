@@ -1,0 +1,21 @@
+.self-card {
+
+	&__wrapper {
+		margin: 0 auto;
+		width: 400px;
+		border: black solid 1px;
+		padding: 15px;
+	}
+
+	&__input-wrapper {
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__label{
+
+	}
+	&__input{
+		border: solid 1px black;
+	}
+}

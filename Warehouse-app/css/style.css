@@ -99,3 +99,24 @@ h6 {
 html {
   scroll-behavior: smooth;
 }
+
+.self-card__wrapper {
+  margin: 0 auto;
+  width: 400px;
+  border: black solid 1px;
+  padding: 15px;
+}
+
+.self-card__input-wrapper {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.self-card__input {
+  border: solid 1px black;
+}

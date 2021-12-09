@@ -1,3 +1,4 @@
+@@include('dataBase.js');
 
 //функция для подключения webp
 function testWebP(callback) {
