@@ -35,12 +35,32 @@ const workNumber = document.querySelector('#workNumber');
 const profession = document.querySelector('#profession');
 const dateOfStartInCompany = document.querySelector('#dateOfStartInCompany');
 
-const saveSelfCardBtn = document.querySelector('#saveSelfCard');
 
-//-----------------insert func ------------------
+//btn
+document.querySelector('#saveSelfCard').onclick = addNewPersonCardToFirebase;//btn
+document.querySelector('#getSelfCard').onclick = getPersonDataOnPage;//btn
 
-function insertData() {
-	selectData()
+
+
+//---------------GET ALL DATA FROM FIREBASE (inicialization)-----------------
+
+function getAllDataFromBase(){
+	const dbref = ref(db);
+
+	get(child(dbref, "/")).then(data=> {
+		console.log('data.val()', data.val())
+		if (data.val() != null) state = data.val();
+		else { state = inicialState }
+	})
+
+}
+
+getAllDataFromBase()
+
+//-----------------ADD NEW PERSON CARD TO FIREBASE ------------------
+
+function addNewPersonCardToFirebase() {
+	getAllDataFromBase()
 
 	const newWorker = {
 		name: name.value,
@@ -60,24 +80,25 @@ function insertData() {
 	console.log('personal', personal)
 	console.log('state', state)
 	set(ref(db, "company/abz/personal"), personal)
+
+	getAllDataFromBase()
 }
 
-saveSelfCardBtn.onclick = insertData
-
-
-//---------------get data-----------------
-
-
-function selectData(){
-	const dbref = ref(db);
-
-	
-	get(child(dbref, "/")).then(data=> {
-		console.log('data.val()', data.val())
-		if (data.val() != null) state = data.val();
-		else {state = inicialState}
+function getPersonDataOnPage(){
+	document.querySelector('.out').innerHTML = ''
+	let personal = state.company.abz.personal;
+	console.log(personal)
+	personal.map(e => {
+		document.querySelector('.out').innerHTML += `<div>${e.name} ${e.surname}</div>`
 	})
-
+	
 }
-selectData()
-//console.log(selectData())
+
+
+
+
+
+
+
+
+

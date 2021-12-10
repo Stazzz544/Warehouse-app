@@ -1,4 +1,3 @@
-@@include('dataBase.js');
 
 //функция для подключения webp
 function testWebP(callback) {
@@ -18,3 +17,6 @@ testWebP(function (support) {
 		document.querySelector('body').classList.add('no-webp');
 	}
 });
+
+const obj = {name: 'stas'}
+

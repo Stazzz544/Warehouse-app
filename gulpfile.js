@@ -14,7 +14,7 @@ let path = {
 	src: {  //пути вывода готовых файлов проекта
 		html: [source_folder + "/*.html", "!"+source_folder + "/_*.html"],//исключаем все файлы начинающиеся с символа подчёркивание
 		css: source_folder + "/scss/style.scss",
-		js: source_folder + "/js/script.js",
+		js: source_folder + "/js/*.js",
 		img: source_folder + "/img/**/*.+(png|jpg|gif|ico|svg|webp)",  //две звёздочки означает, что мы будем слушать все подпапки в папке src/img, одна звёздочка - любое название
 		fonts: source_folder + "/fonts/*.ttf",
 	},
@@ -38,7 +38,7 @@ let { src, dest } = require('gulp'),  //переменные для написа
 	group_media = require("gulp-group-css-media-queries"),//собирает все медиа запросы и группирует их в конце css файла
 	clean_css = require("gulp-clean-css"),//для вывода сжатого и не сжатого css
 	rename = require("gulp-rename"),//для вывода сжатого и не сжатого css
-	uglify = require("gulp-uglify-es").default, //для сжатия js файлов
+	//uglify = require("gulp-uglify-es").default, //для сжатия js файлов
 	imagemin = require('gulp-imagemin'),//сжимает и оптимизирует картинки
 	webp = require('gulp-webp'),//конвертирует изображения в WEBp формат и подключает в файл css и html
 	webphtml = require('gulp-webp-html'),//автоматизирует подключение webp изображений в html
@@ -107,14 +107,14 @@ function js() {
 	return src(path.src.js)//получаем исходник
 		.pipe(fileinclude())
 		.pipe(dest(path.build.js))//выводим
-		.pipe(
-			uglify()
-		)
-		.pipe(
-			rename({
-				extname: ".min.js"
-			})
-		)
+		// .pipe(
+		// 	uglify()
+		// )
+		// .pipe(
+		// 	rename({
+		// 		extname: ".min.js"
+		// 	})
+		// )
 		.pipe(dest(path.build.js))//выводим
 		.pipe(browsersync.stream())
 }
