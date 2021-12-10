@@ -18,6 +18,5 @@ testWebP(function (support) {
 	}
 });
 
-const obj = {name: 'stas'}
 
-//вывод на страницу
+

@@ -1,11 +1,11 @@
 let inicialState = {
 	company:{
 		abz:{
-			personal:[
+			staff:[
 			]
 		},
 		stroyluxe:{
-			personal:[
+			staff:[
 				
 			]
 		},

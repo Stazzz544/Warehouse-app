@@ -18,5 +18,5 @@ testWebP(function (support) {
 	}
 });
 
-const obj = {name: 'stas'}
+
 

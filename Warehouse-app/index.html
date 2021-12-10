@@ -1,86 +1,1 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.min.css?07.12.2021v1">
-	<title>Warehouse</title>
-</head>
-
-<body>
-	<div class="main-wrapper">
-
-		<header class='header'>
-			<nav class='navigation'>
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
-				</ul>
-			</nav>
-		</header>
-
-		<section class="content">
-
-			<aside class="list">
-				<div class="out">
-			</aside>
-
-			<main>
-				<div class="self-card">
-					<div class="self-card__wrapper">
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="name">Имя</label>
-							<input class="self-card__input" type="text" id='name'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="surname">Фамилия</label>
-							<input class="self-card__input" type="text" id='surname'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="patronymic">Отчество</label>
-							<input  class="self-card__input" type="text" id='patronymic'>
-						</div>
-						<br>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="workplace">Структурное подразделение</label>
-							<input class="self-card__input" type="text" id='workplace'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="workNumber">Табельный номер</label>
-							<input class="self-card__input" type="text" id='workNumber'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="profession">Профессия</label>
-							<input class="self-card__input" type="text" id='profession'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>
-							<input class="self-card__input" type="text" id='dateOfStartInCompany'>
-						</div>
-			
-						<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
-					</div>
-			
-					<button class="self-card__save-btn" id='getSelfCard'>Получить данные</button>
-				</div>
-			</main>
-
-			</div>
-
-		</section>
-
-
-		<footer class="footer">
-			<div class="footer__elem">2021</div>
-		</footer>
-
-	</div>
-	<script src="js/dataBase.js?07.12.2021" type="module"></script>
-	<script src="js/store.js?07.12.2021" ></script>
-	<script src="js/script.js?07.12.2021" ></script>
-</body>
-
-</html>
+<!DOCTYPE html><html lang="ru"><head>	<meta charset="UTF-8">	<meta http-equiv="X-UA-Compatible" content="IE=edge">	<meta name="viewport" content="width=device-width, initial-scale=1.0">	<link rel="stylesheet" href="css/style.min.css?07.12.2021v1">	<title>Warehouse</title></head><body>	<div class="main-wrapper">		<header class='header'>			<nav class='navigation'>				<ul>					<li></li>					<li></li>					<li></li>				</ul>			</nav>		</header>		<section class="content">			<aside class="list">				<div class="list__out">			</aside>			<main>				<div class="self-card">					<div class="self-card__wrapper">						<div class="self-card__input-wrapper">							<label class="self-card__label" for="name">Имя</label>							<input class="self-card__input" type="text" id='name'>						</div>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="surname">Фамилия</label>							<input class="self-card__input" type="text" id='surname'>						</div>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="patronymic">Отчество</label>							<input  class="self-card__input" type="text" id='patronymic'>						</div>						<br>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="workplace">Структурное подразделение</label>							<input class="self-card__input" type="text" id='workplace'>						</div>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="workNumber">Табельный номер</label>							<input class="self-card__input" type="number" id='workNumber'>						</div>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="profession">Профессия</label>							<input class="self-card__input" type="text" id='profession'>						</div>						<div class="self-card__input-wrapper">							<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>							<input class="self-card__input" type="date" id='dateOfStartInCompany'>						</div>									<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>					</div>								<button class="self-card__save-btn" id='getSelfCard'>Получить данные</button>				</div>			</main>			</div>		</section>		<footer class="footer">			<div class="footer__elem">2021</div>		</footer>	</div>	<script src="js/dataBase.js?07.12.2021" type="module"></script>	<script src="js/store.js?07.12.2021" ></script>	<script src="js/script.js?07.12.2021" ></script></body></html>
