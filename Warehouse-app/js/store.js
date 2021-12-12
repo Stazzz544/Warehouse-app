@@ -1,15 +1,7 @@
 let inicialState = {
 	company:{
-		abz:{
-			staff:[
-			]
-		},
-		stroyluxe:{
-			staff:[
-				
-			]
-		},
+		staff:[],
 	}
-};
+};	
 
 let state = {}

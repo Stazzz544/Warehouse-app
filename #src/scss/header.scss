@@ -1,5 +1,24 @@
 .header{
 	height: 60px;
 	width: 100%;
-	background-color: rgb(189, 189, 189);
+}
+
+.navigation {
+	height: 100%;
+
+	&__list {
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
+	&__list-item {;
+		margin-left: 60px;
+		font-size: 18px;
+		
+		cursor: pointer;
+	}
+	&__list-item.active {
+		font-weight: 600;
+	}
 }

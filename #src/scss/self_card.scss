@@ -1,0 +1,88 @@
+.self-card {
+	margin-top: 50px;
+	display: none;
+	&__title{
+		text-align: center;
+		font-size: 17px;
+		font-weight: 600;
+		color: rgb(155, 28, 28);
+		margin-bottom: 25px;
+		line-height: 30px;
+	}
+	&__wrapper {
+		margin: 0 auto;
+		width: 400px;
+		border: rgb(206, 206, 206) solid 1editpx;
+		padding: 45px;
+		background-color:rgb(255, 255, 255)
+	}
+
+	&__input-wrapper {
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__label{
+
+	}
+	&__input{
+		border: none;
+		border-bottom: 1px rgb(137, 137, 137) solid;
+		background-color:transparent;
+		padding: 2px 10px;
+	}
+	&__select, &__select-header, &__select-item{
+		width: 167px
+	}
+	&__select-current{
+		padding: 3px;
+	}
+	&__select-icon{
+		height: 28px;
+	}
+	&__save-btn{
+		padding: 10px 15px;
+		border-radius: 15px;
+		margin-right: auto;
+		background-color: rgb(182, 230, 173)
+	}
+	&__save-btn{
+		padding: 10px 15px;
+		border-radius: 15px;
+		margin-right: auto;
+		background-color: rgb(182, 230, 173)
+	}
+	&__save-btn{
+		padding: 10px 15px;
+		border-radius: 15px;
+		margin-right: auto;
+		background-color: rgb(182, 230, 173);
+		font-size: 20px;
+	}
+	&__del-btn{
+		padding: 10px 15px;
+		border-radius: 15px;
+		background-color: rgb(238, 20, 20);
+		color:rgb(255, 255, 255);
+		max-width: 140px;
+	}
+	&__edit-btn{
+		padding: 10px 10px;
+		border-radius: 15px;
+		background-color: rgb(255, 132, 0);
+		max-width: 140px;
+	}
+	&__btn-wrapper{
+		margin-top: 45px;
+		text-align: center;
+	}
+	&__btn-wrapper-edit-card{
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.self-card.active{
+	display: block;
+}

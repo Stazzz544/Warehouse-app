@@ -1,21 +1,24 @@
-@import 'standart/reset.scss';
-@import 'standart/mixins.scss';
-@import 'standart/variables.scss';
+@import 'standart/reset';
+@import 'standart/mixins';
+@import 'standart/variables';
 
 //libs
-
+@import 'lib/custom-select';
 
 //common classes
 @import '#global';
 
 //blocks
-@import 'header.scss';
-@import 'footer.scss';
-@import 'list.scss';
+@import 'header';
+@import 'footer';
+@import 'list';
 
 
 //sections
-@import 'modal/self_card.scss';
+@import 'self_card';
+@import 'employee-info';
 
 
 
+//modal
+@import 'modal/modal_edit'

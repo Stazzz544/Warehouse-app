@@ -14,61 +14,160 @@
 
 		<header class='header'>
 			<nav class='navigation'>
-				<ul>
-					<li></li>
-					<li></li>
-					<li></li>
+				<ul class="navigation__list">
+					<li class="navigation__list-item  active" id='makeNewCard'>Завести новую карточку</li>
+					<li class="navigation__list-item" id='showReadyCard'>Просмотреть заведённую карточку</li>
 				</ul>
 			</nav>
 		</header>
 
 		<section class="content">
 
-			<aside class="list">
-				<div class="list__out">
+			<aside class="list" id="listOfstaff">
+				<h2 class='list__title'> Список сотрудников из базы данных:</h2>
+
+				<!-- сюда выводится список из базы -->
+				<div class="list__out"></div>
 			</aside>
 
-			<main>
-				<div class="self-card">
+			<main class='main-content-field'>
+
+				<div class="main-content__page self-card  active" id='selfCard'>
+
 					<div class="self-card__wrapper">
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="name">Имя</label>
-							<input class="self-card__input" type="text" id='name'>
-						</div>
+						<h2 class="self-card__title">Личная карточка СИЗ</h2>
+
+
 						<div class="self-card__input-wrapper">
 							<label class="self-card__label" for="surname">Фамилия</label>
 							<input class="self-card__input" type="text" id='surname'>
 						</div>
 						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="name">Имя</label>
+							<input class="self-card__input" type="text" id='name'>
+						</div>
+						<div class="self-card__input-wrapper">
 							<label class="self-card__label" for="patronymic">Отчество</label>
-							<input  class="self-card__input" type="text" id='patronymic'>
+							<input class="self-card__input" type="text" id='patronymic'>
 						</div>
 						<br>
+
 						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="workplace">Структурное подразделение</label>
-							<input class="self-card__input" type="text" id='workplace'>
+
+							<dib>Структурное подразделение</dib>
+							<div class="select self-card__select">
+								<div class="select__header self-card__select-header">
+									<span class="select__current self-card__select-current" id='workplace'>АБЗ</span>
+									<div class="select__icon self-card__select-icon">&times;</div>
+								</div>
+
+								<div class="select__body">
+									<div class="select__item self-card__select-item">АБЗ</div>
+									<div class="select__item self-card__select-item">СТРОЙЛЮКС</div>
+									<div class="select__item self-card__select-item">ЕМК</div>
+								</div>
+							</div>
+
 						</div>
+
+
 						<div class="self-card__input-wrapper">
 							<label class="self-card__label" for="workNumber">Табельный номер</label>
 							<input class="self-card__input" type="number" id='workNumber'>
 						</div>
 						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="profession">Профессия</label>
+							<label class="self-card__label" for="profession">Должность</label>
 							<input class="self-card__input" type="text" id='profession'>
 						</div>
 						<div class="self-card__input-wrapper">
 							<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>
 							<input class="self-card__input" type="date" id='dateOfStartInCompany'>
 						</div>
-			
-						<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
-					</div>
-			
-					<button class="self-card__save-btn" id='getSelfCard'>Получить данные</button>
-				</div>
-			</main>
 
-			</div>
+						<div class="self-card__btn-wrapper">
+							<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
+						</div>
+					</div>
+
+				</div>
+
+	<!------------------------------------------------------------------------------->
+
+				<div class="main-content__page employee-info" id='employeeInfo'>
+
+					<div class="self-card__wrapper" id='showInfoAboutEmployee'>
+						<h2 class="self-card__title">Личная карточка СИЗ</h2>
+
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="surname">Фамилия</label>
+							<input class="self-card__input" type="text" id='surnameGot'>
+						</div>
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="name">Имя</label>
+							<input class="self-card__input" type="text" id='nameGot'>
+						</div>
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="patronymic">Отчество</label>
+							<input class="self-card__input" type="text" id='patronymicGot'>
+						</div>
+						<br>
+
+						<div class="self-card__input-wrapper">
+
+							<dib>Структурное подразделение</dib>
+							<div class="select self-card__select">
+								<div class="select__header self-card__select-header">
+									<span class="select__current self-card__select-current" id='workplaceGot'>АБЗ</span>
+									<div class="select__icon self-card__select-icon">&times;</div>
+								</div>
+
+								<div class="select__body">
+									<div class="select__item self-card__select-item">АБЗ</div>
+									<div class="select__item self-card__select-item">СТРОЙЛЮКС</div>
+									<div class="select__item self-card__select-item">ЕМК</div>
+								</div>
+							</div>
+
+						</div>
+
+
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="workNumber">Табельный номер</label>
+							<input class="self-card__input" type="number" id='workNumberGot'>
+						</div>
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="profession">Должность</label>
+							<input class="self-card__input" type="text" id='professionGot'>
+						</div>
+						<div class="self-card__input-wrapper">
+							<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>
+							<input class="self-card__input" type="date" id='dateOfStartInCompanyGot'>
+						</div>
+
+						<div class="self-card__btn-wrapper self-card__btn-wrapper-edit-card">
+							<button class="self-card__del-btn" id='delSelfCard'>Удалить данные</button>
+							<button class="self-card__edit-btn" id='editSelfCard'>Перезаписать данные</button>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="modal-edit">
+					<div class="modal-edit__wrapper">
+						<div class="modal-edit__text-wrapper">
+							<p class="modal-edit__text">Вы уверенны, что хотите перезаписать данные?</p>
+						</div>
+						
+						<div class="modal-edit__buttons-wrapper">
+							<button class="modal-edit__button-yes">Да</button>
+							<button class="modal-edit__button-no">Нет</button>
+						</div>
+						
+					</div>
+				</div>
+
+			</main>
 
 		</section>
 
@@ -79,8 +178,8 @@
 
 	</div>
 	<script src="js/dataBase.js?07.12.2021" type="module"></script>
-	<script src="js/store.js?07.12.2021" ></script>
-	<script src="js/script.js?07.12.2021" ></script>
+	<script src="js/store.js?07.12.2021"></script>
+	<script src="js/script.js?07.12.2021"></script>
 </body>
 
 </html>
