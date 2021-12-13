@@ -25,6 +25,11 @@
 
 			<aside class="list" id="listOfstaff">
 				<h2 class='list__title'> Список сотрудников из базы данных:</h2>
+				<div class="list__sort-wrapper">
+					<div class="list__sort-text">Сортировать список по:</div>
+					<button class="list__sort-alphabet">АБВ</button>
+					<button class="list__sort-data">Дате</button>
+				</div>
 
 				<!-- сюда выводится список из базы -->
 				<div class="list__out"></div>
@@ -160,8 +165,23 @@
 						</div>
 						
 						<div class="modal-edit__buttons-wrapper">
-							<button class="modal-edit__button-yes">Да</button>
-							<button class="modal-edit__button-no">Нет</button>
+							<button class="modal-confirm__button-yes modal-edit__button-yes">Да</button>
+							<button class="modal-confirm__button-no modal-edit__button-no">Нет</button>
+						</div>
+						
+					</div>
+				</div>
+
+
+				<div class="modal-delete">
+					<div class="modal-delete__wrapper">
+						<div class="modal-delete__text-wrapper">
+							<p class="modal-delete__text">Вы уверенны, что хотите удалить карточку?(данные будут удалены навсегда)</p>
+						</div>
+						
+						<div class="modal-delete__buttons-wrapper">
+							<button class="modal-confirm__button-yes modal-delete__button-yes">Да</button>
+							<button class="modal-confirm__button-no modal-delete__button-no">Нет</button>
 						</div>
 						
 					</div>

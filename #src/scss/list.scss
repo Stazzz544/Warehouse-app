@@ -20,9 +20,22 @@
 		padding-top: 12px;
 		line-height: 8px;
 		border-top: solid 1px rgb(255, 255, 255);
-
 	}
 	&__item-icon{
 
 	}
+	&__sort-wrapper{
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		line-height: 18px;
+	}
+	&__sort-alphabet, &__sort-data{
+		border: solid black 1px;
+		border-radius: 4px;
+		padding: 4px 10px;
+		margin: 0 5px;
+	}
+
 }

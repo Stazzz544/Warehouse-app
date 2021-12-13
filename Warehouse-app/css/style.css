@@ -275,6 +275,28 @@ main {
   border-top: solid 1px white;
 }
 
+.list__sort-wrapper {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 18px;
+}
+
+.list__sort-alphabet,
+.list__sort-data {
+  border: solid black 1px;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin: 0 5px;
+}
+
 .self-card {
   margin-top: 50px;
   display: none;
@@ -396,7 +418,8 @@ main {
   display: block;
 }
 
-.modal-edit {
+.modal-edit,
+.modal-delete {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -411,7 +434,8 @@ main {
   display: none;
 }
 
-.modal-edit__wrapper {
+.modal-edit__wrapper,
+.modal-delete__wrapper {
   width: 400px;
   height: 120px;
   background-color: white;
@@ -419,12 +443,14 @@ main {
   border: #a5a5a5 solid 2px;
 }
 
-.modal-edit__text {
+.modal-edit__text,
+.modal-delete__text {
   text-align: center;
   font-size: 18px;
 }
 
-.modal-edit__buttons-wrapper {
+.modal-edit__buttons-wrapper,
+.modal-delete__buttons-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -436,17 +462,25 @@ main {
   width: 260px;
 }
 
-.modal-edit__button-yes {
+.modal-edit__button-yes,
+.modal-delete__button-yes {
   padding: 5px 40px;
   background: #e99191;
 }
 
-.modal-edit__button-no {
+.modal-edit__button-no,
+.modal-delete__button-no {
   padding: 5px 40px;
   background: #b4f398;
 }
 
 .modal-edit.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal-delete.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

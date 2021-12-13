@@ -19,7 +19,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);  //???????????????????????????????????????????
 
 import {
 	getDatabase,
@@ -33,40 +33,76 @@ import {
 
 const db = getDatabase();
 
+async function firstStartApp(){
+	state = await getAllDataFromBase()// асинхронная функция
+	showStaffsOnPage()// синхронная функция, выполнить после асинхронной
+}
 
-
-
-
-
+firstStartApp()
 
 //================listeners of events==============
-document.querySelector('#saveSelfCard').onclick = addNewPersonCardToFirebase; //btn
-//document.querySelector('#delSelfCard').onclick = addNewPersonCardToFirebase; //in process
+document.querySelector('#saveSelfCard').onclick = addNewPersonCardToFirebase; //add btn
+//---------------------------------------------------
+document.querySelector('#editSelfCard').onclick = () => editOrDeleteBtn('.modal-edit', editExistStaffCardAndReplaceItInFirebase);
+//---------------------------------------------------
+document.querySelector('#delSelfCard').onclick = () => editOrDeleteBtn('.modal-delete', deleteExistStaffCard);
+//---------------------------------------------------
+//show card when you click to the name of person
+document.querySelector('#listOfstaff').onclick = showCompliteCard;
+//---------------------------------------------------
+// sort list by alphabet
+document.querySelector('.list__sort-alphabet').onclick = showSortedStaffsOnPage;
+// sort list by data
+document.querySelector('.list__sort-data').onclick = showStaffsOnPage;
 
-//btn for edit card
-document.querySelector('#editSelfCard').addEventListener('click', () => {
-	const modal = document.querySelector('.modal-edit');
-	const modalBtnYes = document.querySelector('.modal-edit__button-yes');
-	const modalBtnNo = document.querySelector('.modal-edit__button-no');
+//GET ALL FIELDS FUNCTIONS
+
+
+function getAllFieldFromNewCard(){
+	return {
+		name: document.querySelector('#name'),
+		surname: document.querySelector('#surname'),
+		patronymic: document.querySelector('#patronymic'),
+		workplace: document.querySelector('#workplace'),
+		workNumber: document.querySelector('#workNumber'),
+		profession: document.querySelector('#profession'),
+		dateOfStartInCompany: document.querySelector('#dateOfStartInCompanyGot'),
+	}
+}
+
+function getAllFieldFromEditCard(){
+	return {
+		name: document.querySelector('#nameGot'),
+		surname: document.querySelector('#surnameGot'),
+		patronymic: document.querySelector('#patronymicGot'),
+		workplace: document.querySelector('#workplaceGot'),
+		workNumber: document.querySelector('#workNumberGot'),
+		profession: document.querySelector('#professionGot'),
+		dateOfStartInCompany: document.querySelector('#dateOfStartInCompanyGot'),
+	}
+}
+
+function clearAllFieldsInForm(obj) { //очищает поля в форме
+	for(let key in obj) {obj[key].value = '';}
+}
+
+
+//управляет подтверждающими модалками при редактировании или удалении карточек
+function editOrDeleteBtn(nameOfModal, DelOrEditFunc) {
+	const modal = document.querySelector(nameOfModal);
+	const modalBtnYes = modal.querySelector('.modal-confirm__button-yes');
+	const modalBtnNo = modal.querySelector('.modal-confirm__button-no');
 
 	modal.classList.add('active')
 
 	modalBtnNo.addEventListener('click', () => modal.classList.remove('active'))
 	modalBtnYes.addEventListener('click', () => {
-		editExistStaffCardAndReplaceItInFirebase()
+		DelOrEditFunc()
 		modal.classList.remove('active')
 	})
-});
-
-
-//show card when you click to the name of person
-document.querySelector('#listOfstaff').onclick = showCompliteCard;
-
-
-//-----------------self-card-------------------
+}
 
 //---------------GET ALL DATA FROM FIREBASE (inicialization)-----------------
-
 function getAllDataFromBase() { //получение данных из базы
 	const dbref = ref(db);
 
@@ -80,36 +116,23 @@ function getAllDataFromBase() { //получение данных из базы
 	})
 }
 
-firstStartApp()
 
-async function firstStartApp(){
-	state = await getAllDataFromBase()// асинхронная функция
-	showStaffsOnPage()// синхронная функция, выполнить после асинхронной
-}
 
 
 //-----------------ADD NEW PERSON CARD TO FIREBASE ------------------
-
 async function addNewPersonCardToFirebase() {
 	await getAllDataFromBase()//получаем последние изменения в базе перед отправкой новой карточки. Это нужно если параллельно кто-то уже внёс изменения в код и мы его теперь не перезатрём.
-
-	const name = document.querySelector('#name');
-	const surname = document.querySelector('#surname');
-	const patronymic = document.querySelector('#patronymic');
-	const workplace = document.querySelector('#workplace');
-	const workNumber = document.querySelector('#workNumber');
-	const profession = document.querySelector('#profession');
-	const dateOfStartInCompany = document.querySelector('#dateOfStartInCompany');
+	const allFields = getAllFieldFromNewCard()
 	
 	const newWorker = {
 		id: Date.now(),
-		name: name.value,
-		surname: surname.value,
-		patronymic: patronymic.value,
-		workplace: workplace.textContent,
-		workNumber: workNumber.value,
-		profession: profession.value,
-		dateOfStartInCompany: dateOfStartInCompany.value,
+		name: allFields.name.value,
+		surname: allFields.surname.value,
+		patronymic: allFields.patronymic.value,
+		workplace: allFields.workplace.textContent,
+		workNumber: allFields.workNumber.value,
+		profession: allFields.profession.value,
+		dateOfStartInCompany: allFields.dateOfStartInCompany.value,
 		clothes: {
 			boots: '',
 			jacket: '',
@@ -121,14 +144,7 @@ async function addNewPersonCardToFirebase() {
 
 	set(ref(db, `company/staff`), staff) //код добавления в базу локального стэйта
 
-	clearFields(name, //чистим поля в инпутах
-		surname,
-		patronymic,
-		workplace,
-		workNumber,
-		profession,
-		dateOfStartInCompany)
-
+	clearAllFieldsInForm(allFields) // чистим поля формы
 	getAllDataFromBase()// получаем всю дату из базы
 	showStaffsOnPage() // выводим наш стафф на страницу
 }
@@ -137,7 +153,7 @@ async function addNewPersonCardToFirebase() {
 
 function showStaffsOnPage() {
 	const out = document.querySelector('.list__out');
-	out.innerHTML = ''
+	out.innerHTML = '';
 	const staff = state.company.staff;
 	
 	
@@ -157,14 +173,34 @@ function showStaffsOnPage() {
 }
 
 
-function clearFields(...args) {
-	args.forEach(e => e.value = '')
+function showSortedStaffsOnPage() {
+	const out = document.querySelector('.list__out');
+	out.innerHTML = '';
+	const staff = state.company.staff;
+
+	const sortedSurnamesArr = staff.map( e => e.surname)
+	sortedSurnamesArr.sort()
+
+	for(let sortedSurname of sortedSurnamesArr) {
+		for(let item of staff) {
+			if (sortedSurname == item.surname) {
+				let patronymic = item.patronymic[0];
+				if(patronymic)patronymic += '.';
+				else patronymic = '';
+
+				out.innerHTML += ` 
+				<div class='list__items' firm='${item.workplace}' id='${item.id}'>
+					<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
+					<img class='list__item-icon'></img>
+				</div>
+				`
+			}
+		}
+	}
 }
 
 
 //------------show full info about one staff------------------
-
-
 function showCompliteCard(e) {
 	const target = e.target;
 
@@ -172,36 +208,22 @@ function showCompliteCard(e) {
 		const collectionOfListItem = document.querySelectorAll('.list__item')
 		toggleClassActive(collectionOfListItem ,target)
 
-		//get fields from card
-		const name = document.querySelector('#nameGot');
-		const surname = document.querySelector('#surnameGot');
-		const patronymic = document.querySelector('#patronymicGot');
-		const workplace = document.querySelector('#workplaceGot');
-		const workNumber = document.querySelector('#workNumberGot');
-		const profession = document.querySelector('#professionGot');
-		const dateOfStartInCompany = document.querySelector('#dateOfStartInCompanyGot');
-
 		//ищем id в атрибуте
 		const parentId = target.closest('.list__items').getAttribute('id')
-		console.log(parentId)
 
 		//устанавливаем карте атрибут для возможности последующего удаления или редактирования карты и отправки в базу. По этому атрибуту будем искать совпадение в state
 		document.querySelector('#employeeInfo').setAttribute('employee-id', parentId)
 
-		//document.querySelector('.employee-info').setAttribute(parentId)
-
 		const wishCard = state.company.staff.find(e => e.id == parentId)
-		console.log(wishCard)
-
-		name.value = wishCard.name;
-		surname.value = wishCard.surname;
-		patronymic.value = wishCard.patronymic;
-		workplace.textContent = wishCard.workplace;
-		workNumber.value = wishCard.workNumber;
-		profession.value = wishCard.profession;
-		dateOfStartInCompany.value = wishCard.dateOfStartInCompany;
-
-
+		
+		const allFields = getAllFieldFromEditCard();
+		allFields.name.value = wishCard.name;
+		allFields.surname.value = wishCard.surname;
+		allFields.patronymic.value = wishCard.patronymic;
+		allFields.workplace.textContent = wishCard.workplace;
+		allFields.workNumber.value = wishCard.workNumber;
+		allFields.profession.value = wishCard.profession;
+		allFields.dateOfStartInCompany.value = wishCard.dateOfStartInCompany;
 
 		//переключаем на показ найденной карточки при клике на сотрудника слева
 		document.querySelector('#makeNewCard').classList.remove('active')
@@ -212,39 +234,46 @@ function showCompliteCard(e) {
 }
 
 
-
-
 async function editExistStaffCardAndReplaceItInFirebase(){
 	//все поля с карточки
 	const state = await getAllDataFromBase()
 
-	const name = document.querySelector('#nameGot');
-	const surname = document.querySelector('#surnameGot');
-	const patronymic = document.querySelector('#patronymicGot');
-	const workplace = document.querySelector('#workplaceGot');
-	const workNumber = document.querySelector('#workNumberGot');
-	const profession = document.querySelector('#professionGot');
-	const dateOfStartInCompany = document.querySelector('#dateOfStartInCompanyGot');
+	const allField = getAllFieldFromEditCard()
 
 	const parentElement = document.querySelector('#employeeInfo');
 	const parentId = parentElement.getAttribute('employee-id')//получили id карточки
 	const allEmployees = state.company.staff;//получили всех рабочих
 
-
 	allEmployees.forEach(elem => { //изменяем поля в объекте рабочего
 		if(elem.id == parentId){
-			elem.name = name.value;
-			elem.surname = surname.value;
-			elem.patronymic = patronymic.value;
-			elem.workplace = workplace.textContent;
-			elem.workNumber = workNumber.value;
-			elem.profession = profession.value;
-			elem.dateOfStartInCompany = dateOfStartInCompany.value;
+			elem.name = allField.name.value;
+			elem.surname = allField.surname.value;
+			elem.patronymic = allField.patronymic.value;
+			elem.workplace = allField.workplace.textContent;
+			elem.workNumber = allField.workNumber.value;
+			elem.profession = allField.profession.value;
+			elem.dateOfStartInCompany = allField.dateOfStartInCompany.value;
 		}
 	})
-
 
 	const staff = state.company.staff
 	set(ref(db, `company/staff`), staff)
 	showStaffsOnPage()
+}
+
+function deleteExistStaffCard(){
+
+	const parentElement = document.querySelector('#employeeInfo');
+	const parentId = parentElement.getAttribute('employee-id')//получили id карточки
+	const allEmployees = state.company.staff;
+
+	//фильтруем state, удаоляем оттуда карточку
+	const newStaffList = allEmployees.filter(e => e.id != parentId)
+	state.company.staff = newStaffList//заменяем поля в state
+	set(ref(db, `company/staff`), newStaffList)//отправляем в базу новый state
+
+	const allFields = getAllFieldFromEditCard() //получаем все поля формы
+	clearAllFieldsInForm(allFields) //очищаем все поля формы
+
+	showStaffsOnPage() //обновляем список
 }

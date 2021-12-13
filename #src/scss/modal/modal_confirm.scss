@@ -1,4 +1,4 @@
-.modal-edit {
+.modal-edit, .modal-delete {
 	justify-content: center;
 	align-items: center;
 	position:fixed;
@@ -46,6 +46,11 @@
 	}
 }
 
+
+
 .modal-edit.active {
+	display: flex;
+}
+.modal-delete.active {
 	display: flex;
 }
