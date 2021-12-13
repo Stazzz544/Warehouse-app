@@ -199,6 +199,12 @@ main {
 
 .main-content-field {
   background: url("../img/bg/bg.jpg");
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .header {
@@ -302,6 +308,21 @@ main {
   display: none;
 }
 
+.self-card__flex-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.self-card__flex-left-side {
+  width: 460px;
+}
+
+.self-card__flex-right-side {
+  width: 200px;
+  margin-left: 30px;
+}
+
 .self-card__title {
   text-align: center;
   font-size: 17px;
@@ -312,11 +333,16 @@ main {
 }
 
 .self-card__wrapper {
-  margin: 0 auto;
-  width: 400px;
+  display: inline-block;
   border: #cecece solid 1editpx;
   padding: 45px;
   background-color: white;
+}
+
+.self-card__name-and-surname-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .self-card__input-wrapper {
@@ -324,25 +350,59 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
+.self-card__input-wrapper-select {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .self-card__input {
+  margin: 0 5px;
+  width: 100%;
   border: none;
   border-bottom: 1px #898989 solid;
   background-color: transparent;
   padding: 2px 10px;
+  color: #046e04;
+  font-weight: 600;
+}
+
+.self-card__label {
+  white-space: nowrap;
+}
+
+.self-card__label-two-rows {
+  display: inline;
+  white-space: normal;
+  line-height: 31px;
+}
+
+.self-card__input-wrapper-two-rows {
+  display: block;
+}
+
+.self-card__input-two-rows {
+  display: inline;
+  width: 193px;
+  -webkit-transform: translateY(-1px);
+      -ms-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+
+.self-card__input-bottom {
+  margin: 10px 0 0 0;
 }
 
 .self-card__select,
 .self-card__select-header,
 .self-card__select-item {
-  width: 167px;
+  width: 130px;
+  margin: 0 5px 0 0;
 }
 
 .self-card__select-current {

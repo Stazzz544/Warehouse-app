@@ -31,5 +31,7 @@ main{
 }
 
 .main-content-field{
-	background: url('../img/bg/bg.jpg')
+	background: url('../img/bg/bg.jpg');
+	display: flex;
+	justify-content: center;
 }

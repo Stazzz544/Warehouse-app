@@ -21,6 +21,8 @@
 			</nav>
 		</header>
 
+		<!------------------------------------------------------------------------------->
+
 		<section class="content">
 
 			<aside class="list" id="listOfstaff">
@@ -42,56 +44,246 @@
 					<div class="self-card__wrapper">
 						<h2 class="self-card__title">Личная карточка СИЗ</h2>
 
+						<div class="self-card__flex-wrapper">
+							<div class="self-card__flex-left-side">
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
 
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="surname">Фамилия</label>
-							<input class="self-card__input" type="text" id='surname'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="name">Имя</label>
-							<input class="self-card__input" type="text" id='name'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="patronymic">Отчество</label>
-							<input class="self-card__input" type="text" id='patronymic'>
-						</div>
-						<br>
+									<dib>Компания</dib>
+									<div class="select self-card__select">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>АБЗ</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
 
-						<div class="self-card__input-wrapper">
+										<div class="select__body">
+											<div class="select__item self-card__select-item">АБЗ</div>
+											<div class="select__item self-card__select-item">СТРОЙЛЮКС</div>
+											<div class="select__item self-card__select-item">ЕМК</div>
+										</div>
+									</div>
 
-							<dib>Структурное подразделение</dib>
-							<div class="select self-card__select">
-								<div class="select__header self-card__select-header">
-									<span class="select__current self-card__select-current" id='workplace'>АБЗ</span>
-									<div class="select__icon self-card__select-icon">&times;</div>
 								</div>
 
-								<div class="select__body">
-									<div class="select__item self-card__select-item">АБЗ</div>
-									<div class="select__item self-card__select-item">СТРОЙЛЮКС</div>
-									<div class="select__item self-card__select-item">ЕМК</div>
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="surname">Фамилия</label>
+									<input class="self-card__input" type="text" id='surname'>
+								</div>
+
+								<div class="self-card__name-and-surname-wrapper">
+									<div class="self-card__input-wrapper">
+										<label class="self-card__label" for="name">Имя</label>
+										<input class="self-card__input" type="text" id='name'>
+									</div>
+									<div class="self-card__input-wrapper">
+										<label class="self-card__label" for="patronymic">Отчество</label>
+										<input class="self-card__input" type="text" id='patronymic'>
+									</div>
+								</div>
+
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="patronymic">Структурное подразделение</label>
+									<input class="self-card__input" type="text" id='patronymic'>
+								</div>
+
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="workNumber">Табельный номер</label>
+									<input class="self-card__input" type="number" id='workNumber'>
+								</div>
+
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="profession">Профессия (должность)</label>
+									<input class="self-card__input" type="text" id='profession'>
+								</div>
+
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="dateOfStartInCompany">Дата поступления на работу</label>
+									<input class="self-card__input" type="date" id='dateOfStartInCompany'>
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-two-rows">
+									<label class="self-card__label self-card__label-two-rows" for="dateOfStartInCompany">Дата изм. професии (должности) или перевода в другое структур. подразделение</label>
+									<input class="self-card__input self-card__input-two-rows" type="date" id='dateOfStartInCompany'>
+									<input class="self-card__input self-card__input-bottom" type="text" id='dateOfStartInCompany'>
+								</div>
+
+								<div class="self-card__btn-wrapper">
+									<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
 								</div>
 							</div>
+						
+							<div class="self-card__flex-right-side">
+
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>Пол</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>Мужской</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">Мужской</div>
+											<div class="select__item self-card__select-item">Женский</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper">
+									<label class="self-card__label" for="dateOfStartInCompany">рост</label>
+									<input class="self-card__input" type="number" id='dateOfStartInCompany'>
+								</div>
+
+								<div class="self-card__input-wrapper" >Размер:</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>одежды</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">44-46</div>
+											<div class="select__item self-card__select-item">48-50</div>
+											<div class="select__item self-card__select-item">52-54</div>
+											<div class="select__item self-card__select-item">56-58</div>
+											<div class="select__item self-card__select-item">60-62</div>
+											<div class="select__item self-card__select-item">64-66</div>
+											<div class="select__item self-card__select-item">68-70</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>обуви</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">37</div>
+											<div class="select__item self-card__select-item">38</div>
+											<div class="select__item self-card__select-item">39</div>
+											<div class="select__item self-card__select-item">40</div>
+											<div class="select__item self-card__select-item">41</div>
+											<div class="select__item self-card__select-item">42</div>
+											<div class="select__item self-card__select-item">43</div>
+											<div class="select__item self-card__select-item">44</div>
+											<div class="select__item self-card__select-item">45</div>
+											<div class="select__item self-card__select-item">46</div>
+											<div class="select__item self-card__select-item">47</div>
+											<div class="select__item self-card__select-item">48</div>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>головного убора</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">54</div>
+											<div class="select__item self-card__select-item">55</div>
+											<div class="select__item self-card__select-item">56</div>
+											<div class="select__item self-card__select-item">57</div>
+											<div class="select__item self-card__select-item">58</div>
+											<div class="select__item self-card__select-item">59</div>
+											<div class="select__item self-card__select-item">60</div>
+											<div class="select__item self-card__select-item">61</div>
+											<div class="select__item self-card__select-item">62</div>
+											<div class="select__item self-card__select-item">63</div>
+											<div class="select__item self-card__select-item">64</div>
+											<div class="select__item self-card__select-item">65</div>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>противогаза</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">0 рост</div>
+											<div class="select__item self-card__select-item">1 рост</div>
+											<div class="select__item self-card__select-item">2 рост</div>
+											<div class="select__item self-card__select-item">3 рост</div>
+											<div class="select__item self-card__select-item">4 рост</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>респиратора</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">S</div>
+											<div class="select__item self-card__select-item">M</div>
+											<div class="select__item self-card__select-item">L</div>
+											<div class="select__item self-card__select-item">XL</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="self-card__input-wrapper self-card__input-wrapper-select">
+
+									<dib>рукавиц</dib>
+									<div class="select self-card__select sex-chose">
+										<div class="select__header self-card__select-header">
+											<span class="select__current self-card__select-current" id='workplace'>не выбран</span>
+											<div class="select__icon self-card__select-icon">&times;</div>
+										</div>
+
+										<div class="select__body">
+											<div class="select__item self-card__select-item">XS</div>
+											<div class="select__item self-card__select-item">S</div>
+											<div class="select__item self-card__select-item">M</div>
+											<div class="select__item self-card__select-item">L</div>
+											<div class="select__item self-card__select-item">XL</div>
+											<div class="select__item self-card__select-item">XXL</div>
+											
+										</div>
+									</div>
+
+								</div>
+								
+							</div>
+
+							
+
 
 						</div>
 
-
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="workNumber">Табельный номер</label>
-							<input class="self-card__input" type="number" id='workNumber'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="profession">Должность</label>
-							<input class="self-card__input" type="text" id='profession'>
-						</div>
-						<div class="self-card__input-wrapper">
-							<label class="self-card__label" for="dateOfStartInCompany">Дата приёма на работу</label>
-							<input class="self-card__input" type="date" id='dateOfStartInCompany'>
-						</div>
-
-						<div class="self-card__btn-wrapper">
-							<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
-						</div>
 					</div>
 
 				</div>

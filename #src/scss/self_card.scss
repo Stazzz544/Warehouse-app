@@ -1,6 +1,16 @@
 .self-card {
 	margin-top: 50px;
 	display: none;
+	&__flex-wrapper{
+		display: flex;
+	}
+	&__flex-left-side{
+		width: 460px;
+	}
+	&__flex-right-side{
+		width: 200px;
+		margin-left: 30px;
+	}
 	&__title{
 		text-align: center;
 		font-size: 17px;
@@ -10,30 +20,57 @@
 		line-height: 30px;
 	}
 	&__wrapper {
-		margin: 0 auto;
-		width: 400px;
+		display: inline-block;
 		border: rgb(206, 206, 206) solid 1editpx;
 		padding: 45px;
 		background-color:rgb(255, 255, 255)
 	}
-
+	&__name-and-surname-wrapper{
+		display: flex;
+	}
 	&__input-wrapper {
 		margin-top: 10px;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 	}
-	&__label{
-
+	&__input-wrapper-select{
+		justify-content: space-between;
 	}
+
 	&__input{
+		margin: 0 5px;
+		width: 100%;
 		border: none;
 		border-bottom: 1px rgb(137, 137, 137) solid;
 		background-color:transparent;
 		padding: 2px 10px;
+		color: rgb(4, 110, 4);
+		font-weight: 600;
 	}
+	&__label{
+		white-space: nowrap;
+	}
+	&__label-two-rows{
+		//white-space:pre-wrap
+		display: inline;
+		white-space: normal;
+		line-height: 31px;
+	}
+	&__input-wrapper-two-rows{
+		display: block;
+	}
+	&__input-two-rows{
+		display: inline;
+		width: 193px;
+		transform: translateY(-1px);
+	}
+	&__input-bottom{
+		margin: 10px 0 0 0;
+	}
+	
 	&__select, &__select-header, &__select-item{
-		width: 167px
+		width: 130px;
+		margin: 0 5px 0 0;
 	}
 	&__select-current{
 		padding: 3px;
