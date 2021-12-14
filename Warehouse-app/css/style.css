@@ -426,6 +426,15 @@ main {
   margin: 0 5px 0 0;
 }
 
+.self-card__select.company {
+  width: 140px;
+}
+
+.self-card__select-header {
+  width: auto;
+  margin-right: 0;
+}
+
 .self-card__select-current {
   padding: 3px;
 }
@@ -518,7 +527,6 @@ main {
 .modal-edit__wrapper,
 .modal-delete__wrapper {
   width: 400px;
-  height: 120px;
   background-color: white;
   padding: 15px;
   border: #a5a5a5 solid 2px;

@@ -60,54 +60,56 @@ document.querySelector('.list__sort-data').onclick = showStaffsOnPage;
 
 function getAllFieldFromNewCard(){
 	return {
-		workplace: document.querySelector('#workplace').textContent,
-		surname: document.querySelector('#surname').value,
-		name: document.querySelector('#name').value,
-		patronymic: document.querySelector('#patronymic').value,
-		workNumber: document.querySelector('#workNumber').value,
-		profession: document.querySelector('#profession').value,
-		dateOfStartInCompany: document.querySelector('#dateOfStartInCompany').value,
-		dateOfChangeProfession: document.querySelector('#dateOfChangeProfession').value,
-		newProfessionInfo: document.querySelector('#newProfessionInfo').value,//
-		gender: document.querySelector('#gender').textContent,
-		height: document.querySelector('#height').value,
-		clothingSize: document.querySelector('#clothingSize').textContent,
-		shoeSize: document.querySelector('#shoeSize').textContent,
-		headgearSize: document.querySelector('#headgearSize').textContent,
-		gasMaskSize: document.querySelector('#gasMaskSize').textContent,
-		respiratorSize: document.querySelector('#respiratorSize').textContent,
-		sizeOfMittens: document.querySelector('#sizeOfMittens').textContent,
-		gloveSize: document.querySelector('#gloveSize').textContent,
-		deliveryOfThings: document.querySelector('#deliveryOfThings').value,
+		workplace: document.querySelector('#workplace'),
+		surname: document.querySelector('#surname'),
+		name: document.querySelector('#name'),
+		patronymic: document.querySelector('#patronymic'),
+		structuralSubdivision: document.querySelector('#structuralSubdivision'),
+		workNumber: document.querySelector('#workNumber'),
+		profession: document.querySelector('#profession'),
+		dateOfStartInCompany: document.querySelector('#dateOfStartInCompany'),
+		dateOfChangeProfession: document.querySelector('#dateOfChangeProfession'),
+		newProfessionInfo: document.querySelector('#newProfessionInfo'),
+		gender: document.querySelector('#gender'),
+		height: document.querySelector('#height'),
+		clothingSize: document.querySelector('#clothingSize'),
+		shoeSize: document.querySelector('#shoeSize'),
+		headgearSize: document.querySelector('#headgearSize'),
+		gasMaskSize: document.querySelector('#gasMaskSize'),
+		respiratorSize: document.querySelector('#respiratorSize'),
+		sizeOfMittens: document.querySelector('#sizeOfMittens'),
+		gloveSize: document.querySelector('#gloveSize'),
+		deliveryOfThings: document.querySelector('#deliveryOfThings'),
 	}
 }
 
 function getAllFieldFromEditCard(){
 	return {
-		workplace: document.querySelector('#getWorkplace').textContent,
-		surname: document.querySelector('#getSurname').value,
-		name: document.querySelector('#getName').value,
-		patronymic: document.querySelector('#getPatronymic').value,
-		workNumber: document.querySelector('#getWorkNumber').value,
-		profession: document.querySelector('#getPofession').value,
-		dateOfStartInCompany: document.querySelector('#getDateOfStartInCompany').value,
-		dateOfChangeProfession: document.querySelector('#getDateOfChangeProfession').value,
-		newProfessionInfo: document.querySelector('#getNewProfessionInfo').value,
-		gender: document.querySelector('#getGender').textContent,
-		height: document.querySelector('#getHeight').value,
-		clothingSize: document.querySelector('#getClothingSize').textContent,
-		shoeSize: document.querySelector('#getShoeSize').textContent,
-		headgearSize: document.querySelector('#getHeadgearSize').textContent,
-		gasMaskSize: document.querySelector('#getGasMaskSize').textContent,
-		respiratorSize: document.querySelector('#getRespiratorSize').textContent,
-		sizeOfMittens: document.querySelector('#getSizeOfMittens').textContent,
-		gloveSize: document.querySelector('#getGloveSize').textContent,
-		deliveryOfThings: document.querySelector('#getDeliveryOfThings').value,
+		workplace: document.querySelector('#getWorkplace'),
+		surname: document.querySelector('#getSurname'),
+		name: document.querySelector('#getName'),
+		patronymic: document.querySelector('#getPatronymic'),
+		structuralSubdivision: document.querySelector('#getStructuralSubdivision'),
+		workNumber: document.querySelector('#getWorkNumber'),
+		profession: document.querySelector('#getPofession'),
+		dateOfStartInCompany: document.querySelector('#getDateOfStartInCompany'),
+		dateOfChangeProfession: document.querySelector('#getDateOfChangeProfession'),
+		newProfessionInfo: document.querySelector('#getNewProfessionInfo'),
+		gender: document.querySelector('#getGender'),
+		height: document.querySelector('#getHeight'),
+		clothingSize: document.querySelector('#getClothingSize'),
+		shoeSize: document.querySelector('#getShoeSize'),
+		headgearSize: document.querySelector('#getHeadgearSize'),
+		gasMaskSize: document.querySelector('#getGasMaskSize'),
+		respiratorSize: document.querySelector('#getRespiratorSize'),
+		sizeOfMittens: document.querySelector('#getSizeOfMittens'),
+		gloveSize: document.querySelector('#getGloveSize'),
+		deliveryOfThings: document.querySelector('#getDeliveryOfThings'),
 	}
 }
 
 function clearAllFieldsInForm(obj) { //очищает поля в форме
-	for(let key in obj) {obj[key] = '';}
+	for(let key in obj) {obj[key].value = '';}
 }
 
 
@@ -151,40 +153,36 @@ async function addNewPersonCardToFirebase() {
 	const newWorker = {
 		id: Date.now(),
 
-		workplace: allFields.workplace,
-		surname: allFields.surname,
-		name: allFields.name,
-		patronymic: allFields.patronymic,
-		workNumber: allFields.workNumber,
-		profession: allFields.profession,
-		profession: allFields.profession,
-		dateOfStartInCompany: allFields.dateOfStartInCompany,
-		dateOfChangeProfession: allFields.dateOfChangeProfession,
-		newProfessionInfo: allFields.newProfessionInfo,
-		gender: allFields.gender,
-		height: allFields.height,
-		clothingSize: allFields.clothingSize,
-		shoeSize: allFields.shoeSize,
-		headgearSize: allFields.headgearSize,
-		gasMaskSize: allFields.gasMaskSize,
-		respiratorSize: allFields.respiratorSize,
-		sizeOfMittens: allFields.sizeOfMittens,
-		gloveSize: allFields.gloveSize,
-		deliveryOfThings: allFields.deliveryOfThings,
-		clothes: {
-			boots: '',
-			jacket: '',
-		}
+		workplace: allFields.workplace.textContent,
+		surname: allFields.surname.value,
+		name: allFields.name.value,
+		patronymic: allFields.patronymic.value,
+		structuralSubdivision: allFields.structuralSubdivision.value,
+		workNumber: allFields.workNumber.value,
+		profession: allFields.profession.value,
+		dateOfStartInCompany: allFields.dateOfStartInCompany.value,
+		dateOfChangeProfession: allFields.dateOfChangeProfession.value,
+		newProfessionInfo: allFields.newProfessionInfo.value,
+		gender: allFields.gender.textContent,
+		height: allFields.height.value,
+		clothingSize: allFields.clothingSize.textContent,
+		shoeSize: allFields.shoeSize.textContent,
+		headgearSize: allFields.headgearSize.textContent,
+		gasMaskSize: allFields.gasMaskSize.textContent,
+		respiratorSize: allFields.respiratorSize.textContent,
+		sizeOfMittens: allFields.sizeOfMittens.textContent,
+		gloveSize: allFields.gloveSize.textContent,
+		deliveryOfThings: allFields.deliveryOfThings.value,
 	}
 
 	const staff = state.company.staff
 	staff.push(newWorker) //пушим в локальный стэйт
 
 	set(ref(db, `company/staff`), staff) //код добавления в базу локального стэйта
-
+   console.log(allFields)
 	clearAllFieldsInForm(allFields) // чистим поля формы
 	getAllDataFromBase()// получаем всю дату из базы
-	showStaffsOnPage() // выводим наш стафф на страницу
+	showStaffsOnPage() // выводим наш стафф на страницу в бар
 }
 
 //---------------SHOW STAFFS DATA IN SIDEBAR--------------
@@ -196,8 +194,8 @@ function showStaffsOnPage() {
 	
 	
 	staff.forEach(e => {
-		let patronymic = e.patronymic[0];
-		if(patronymic)patronymic += '.';
+		let patronymic;
+		if(e.patronymic[0]) patronymic = e.patronymic[0] + '.';
 		else patronymic = '';
 
 		//вывод ФИО сотрудников в сайдбар
@@ -210,31 +208,29 @@ function showStaffsOnPage() {
 	})
 }
 
-
 function showSortedStaffsOnPage() {
 	const out = document.querySelector('.list__out');
 	out.innerHTML = '';
-	const staff = state.company.staff;
+	const json = JSON.stringify(state.company.staff)
+	const staff =  JSON.parse(json)
 
-	const sortedSurnamesArr = staff.map( e => e.surname)
-	sortedSurnamesArr.sort()
+	// const sortedSurnamesArr = staff.map( e => e.surname)
+	// sortedSurnamesArr.sort()
 
-	for(let sortedSurname of sortedSurnamesArr) {
-		for(let item of staff) {
-			if (sortedSurname == item.surname) {
-				let patronymic = item.patronymic[0];
-				if(patronymic)patronymic += '.';
-				else patronymic = '';
+	staff.sort((a,b) => a.surname + a.name > b.surname + b.name? 1 : -1)
 
-				out.innerHTML += ` 
-				<div class='list__items' firm='${item.workplace}' id='${item.id}'>
-					<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
-					<img class='list__item-icon'></img>
-				</div>
-				`
-			}
-		}
-	}
+	staff.forEach(item => {
+		let patronymic = item.patronymic[0];
+		if(patronymic)patronymic += '.';
+		else patronymic = '';
+
+		out.innerHTML += ` 
+		<div class='list__items' firm='${item.workplace}' id='${item.id}'>
+			<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
+			<img class='list__item-icon'></img>
+		</div>
+		`
+	})
 }
 
 
@@ -255,19 +251,32 @@ function showCompliteCard(e) {
 		const wishCard = state.company.staff.find(e => e.id == parentId)
 		
 		const allFields = getAllFieldFromEditCard();
-		allFields.name.value = wishCard.name;
-		allFields.surname.value = wishCard.surname;
-		allFields.patronymic.value = wishCard.patronymic;
 		allFields.workplace.textContent = wishCard.workplace;
+		allFields.surname.value = wishCard.surname;
+		allFields.name.value = wishCard.name;
+		allFields.patronymic.value = wishCard.patronymic;
+		allFields.structuralSubdivision.value = wishCard.structuralSubdivision;
 		allFields.workNumber.value = wishCard.workNumber;
 		allFields.profession.value = wishCard.profession;
 		allFields.dateOfStartInCompany.value = wishCard.dateOfStartInCompany;
+		allFields.dateOfChangeProfession.value = wishCard.dateOfChangeProfession;
+		allFields.newProfessionInfo.value = wishCard.newProfessionInfo;
+		allFields.gender.textContent = wishCard.gender;
+		allFields.height.value = wishCard.height;
+		allFields.clothingSize.textContent = wishCard.clothingSize;
+		allFields.shoeSize.textContent = wishCard.shoeSize;
+		allFields.headgearSize.textContent = wishCard.headgearSize;
+		allFields.gasMaskSize.textContent = wishCard.gasMaskSize;
+		allFields.respiratorSize.textContent = wishCard.respiratorSize;
+		allFields.sizeOfMittens.textContent = wishCard.sizeOfMittens;
+		allFields.gloveSize.textContent = wishCard.gloveSize;
+		allFields.deliveryOfThings.value = wishCard.deliveryOfThings;
 
 		//переключаем на показ найденной карточки при клике на сотрудника слева
 		document.querySelector('#makeNewCard').classList.remove('active')
 		document.querySelector('#selfCard').classList.remove('active')
 		document.querySelector('#showReadyCard').classList.add('active')
-		document.querySelector('#employeeInfo').classList.add('active')
+		document.querySelector('#getEmployeeInfo').classList.add('active')
 	}
 }
 
@@ -278,19 +287,34 @@ async function editExistStaffCardAndReplaceItInFirebase(){
 
 	const allField = getAllFieldFromEditCard()
 
-	const parentElement = document.querySelector('#employeeInfo');
+	const parentElement = document.querySelector('#getEmployeeInfo');
 	const parentId = parentElement.getAttribute('employee-id')//получили id карточки
 	const allEmployees = state.company.staff;//получили всех рабочих
 
+
+
 	allEmployees.forEach(elem => { //изменяем поля в объекте рабочего
 		if(elem.id == parentId){
-			elem.name = allField.name.value;
-			elem.surname = allField.surname.value;
-			elem.patronymic = allField.patronymic.value;
 			elem.workplace = allField.workplace.textContent;
+			elem.surname = allField.surname.value;
+			elem.name = allField.name.value;
+			elem.patronymic = allField.patronymic.value;
+			elem.structuralSubdivision = allField.structuralSubdivision.value;
 			elem.workNumber = allField.workNumber.value;
 			elem.profession = allField.profession.value;
 			elem.dateOfStartInCompany = allField.dateOfStartInCompany.value;
+			elem.dateOfChangeProfession = allField.dateOfChangeProfession.value;
+			elem.newProfessionInfo = allField.newProfessionInfo.value;
+			elem.gender = allField.gender.textContent;
+			elem.height = allField.height.value;
+			elem.clothingSize = allField.clothingSize.textContent;
+			elem.shoeSize= allField.shoeSize.textContent ;
+			elem.headgearSize = allField.headgearSize.textContent;
+			elem.gasMaskSize = allField.gasMaskSize.textContent;
+			elem.respiratorSize = allField.respiratorSize.textContent;
+			elem.sizeOfMittens = allField.sizeOfMittens.textContent;
+			elem.gloveSize = allField.gloveSize.textContent;
+			elem.deliveryOfThings = allField.deliveryOfThings.value;
 		}
 	})
 
@@ -301,7 +325,7 @@ async function editExistStaffCardAndReplaceItInFirebase(){
 
 function deleteExistStaffCard(){
 
-	const parentElement = document.querySelector('#employeeInfo');
+	const parentElement = document.querySelector('#getEmployeeInfo');
 	const parentId = parentElement.getAttribute('employee-id')//получили id карточки
 	const allEmployees = state.company.staff;
 
@@ -311,6 +335,7 @@ function deleteExistStaffCard(){
 	set(ref(db, `company/staff`), newStaffList)//отправляем в базу новый state
 
 	const allFields = getAllFieldFromEditCard() //получаем все поля формы
+
 	clearAllFieldsInForm(allFields) //очищаем все поля формы
 
 	showStaffsOnPage() //обновляем список

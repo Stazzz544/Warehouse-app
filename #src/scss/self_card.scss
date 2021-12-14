@@ -87,6 +87,13 @@
 		width: 120px;
 		margin: 0 5px 0 0;
 	}
+	&__select.company{
+		width: 140px;
+	}
+	&__select-header{
+		width:auto;
+		margin-right: 0;
+	}
 	&__select-current{
 		padding: 3px;
 	}
