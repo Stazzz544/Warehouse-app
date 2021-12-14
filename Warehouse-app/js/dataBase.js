@@ -60,30 +60,54 @@ document.querySelector('.list__sort-data').onclick = showStaffsOnPage;
 
 function getAllFieldFromNewCard(){
 	return {
-		name: document.querySelector('#name'),
-		surname: document.querySelector('#surname'),
-		patronymic: document.querySelector('#patronymic'),
-		workplace: document.querySelector('#workplace'),
-		workNumber: document.querySelector('#workNumber'),
-		profession: document.querySelector('#profession'),
-		dateOfStartInCompany: document.querySelector('#dateOfStartInCompanyGot'),
+		workplace: document.querySelector('#workplace').textContent,
+		surname: document.querySelector('#surname').value,
+		name: document.querySelector('#name').value,
+		patronymic: document.querySelector('#patronymic').value,
+		workNumber: document.querySelector('#workNumber').value,
+		profession: document.querySelector('#profession').value,
+		dateOfStartInCompany: document.querySelector('#dateOfStartInCompany').value,
+		dateOfChangeProfession: document.querySelector('#dateOfChangeProfession').value,
+		newProfessionInfo: document.querySelector('#newProfessionInfo').value,//
+		gender: document.querySelector('#gender').textContent,
+		height: document.querySelector('#height').value,
+		clothingSize: document.querySelector('#clothingSize').textContent,
+		shoeSize: document.querySelector('#shoeSize').textContent,
+		headgearSize: document.querySelector('#headgearSize').textContent,
+		gasMaskSize: document.querySelector('#gasMaskSize').textContent,
+		respiratorSize: document.querySelector('#respiratorSize').textContent,
+		sizeOfMittens: document.querySelector('#sizeOfMittens').textContent,
+		gloveSize: document.querySelector('#gloveSize').textContent,
+		deliveryOfThings: document.querySelector('#deliveryOfThings').value,
 	}
 }
 
 function getAllFieldFromEditCard(){
 	return {
-		name: document.querySelector('#nameGot'),
-		surname: document.querySelector('#surnameGot'),
-		patronymic: document.querySelector('#patronymicGot'),
-		workplace: document.querySelector('#workplaceGot'),
-		workNumber: document.querySelector('#workNumberGot'),
-		profession: document.querySelector('#professionGot'),
-		dateOfStartInCompany: document.querySelector('#dateOfStartInCompanyGot'),
+		workplace: document.querySelector('#getWorkplace').textContent,
+		surname: document.querySelector('#getSurname').value,
+		name: document.querySelector('#getName').value,
+		patronymic: document.querySelector('#getPatronymic').value,
+		workNumber: document.querySelector('#getWorkNumber').value,
+		profession: document.querySelector('#getPofession').value,
+		dateOfStartInCompany: document.querySelector('#getDateOfStartInCompany').value,
+		dateOfChangeProfession: document.querySelector('#getDateOfChangeProfession').value,
+		newProfessionInfo: document.querySelector('#getNewProfessionInfo').value,
+		gender: document.querySelector('#getGender').textContent,
+		height: document.querySelector('#getHeight').value,
+		clothingSize: document.querySelector('#getClothingSize').textContent,
+		shoeSize: document.querySelector('#getShoeSize').textContent,
+		headgearSize: document.querySelector('#getHeadgearSize').textContent,
+		gasMaskSize: document.querySelector('#getGasMaskSize').textContent,
+		respiratorSize: document.querySelector('#getRespiratorSize').textContent,
+		sizeOfMittens: document.querySelector('#getSizeOfMittens').textContent,
+		gloveSize: document.querySelector('#getGloveSize').textContent,
+		deliveryOfThings: document.querySelector('#getDeliveryOfThings').value,
 	}
 }
 
 function clearAllFieldsInForm(obj) { //очищает поля в форме
-	for(let key in obj) {obj[key].value = '';}
+	for(let key in obj) {obj[key] = '';}
 }
 
 
@@ -126,13 +150,27 @@ async function addNewPersonCardToFirebase() {
 	
 	const newWorker = {
 		id: Date.now(),
-		name: allFields.name.value,
-		surname: allFields.surname.value,
-		patronymic: allFields.patronymic.value,
-		workplace: allFields.workplace.textContent,
-		workNumber: allFields.workNumber.value,
-		profession: allFields.profession.value,
-		dateOfStartInCompany: allFields.dateOfStartInCompany.value,
+
+		workplace: allFields.workplace,
+		surname: allFields.surname,
+		name: allFields.name,
+		patronymic: allFields.patronymic,
+		workNumber: allFields.workNumber,
+		profession: allFields.profession,
+		profession: allFields.profession,
+		dateOfStartInCompany: allFields.dateOfStartInCompany,
+		dateOfChangeProfession: allFields.dateOfChangeProfession,
+		newProfessionInfo: allFields.newProfessionInfo,
+		gender: allFields.gender,
+		height: allFields.height,
+		clothingSize: allFields.clothingSize,
+		shoeSize: allFields.shoeSize,
+		headgearSize: allFields.headgearSize,
+		gasMaskSize: allFields.gasMaskSize,
+		respiratorSize: allFields.respiratorSize,
+		sizeOfMittens: allFields.sizeOfMittens,
+		gloveSize: allFields.gloveSize,
+		deliveryOfThings: allFields.deliveryOfThings,
 		clothes: {
 			boots: '',
 			jacket: '',
@@ -212,7 +250,7 @@ function showCompliteCard(e) {
 		const parentId = target.closest('.list__items').getAttribute('id')
 
 		//устанавливаем карте атрибут для возможности последующего удаления или редактирования карты и отправки в базу. По этому атрибуту будем искать совпадение в state
-		document.querySelector('#employeeInfo').setAttribute('employee-id', parentId)
+		document.querySelector('#getEmployeeInfo').setAttribute('employee-id', parentId)
 
 		const wishCard = state.company.staff.find(e => e.id == parentId)
 		

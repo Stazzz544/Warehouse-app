@@ -8,7 +8,7 @@
 		width: 460px;
 	}
 	&__flex-right-side{
-		width: 200px;
+		width: 230px;
 		margin-left: 30px;
 	}
 	&__title{
@@ -33,6 +33,12 @@
 		display: flex;
 		align-items: center;
 	}
+	&__input-wrapper.height{
+		justify-content: space-between;
+	}
+	&__input-wrapper.low-margin{
+		margin-top: 3px;
+	}
 	&__input-wrapper-select{
 		justify-content: space-between;
 	}
@@ -46,6 +52,15 @@
 		padding: 2px 10px;
 		color: rgb(4, 110, 4);
 		font-weight: 600;
+	}
+	&__input.height{
+		margin: 0 5px;
+		width: 120px;
+		padding-left: 40px;
+		
+	}
+	&__input-pre-name{
+		line-height: 16px;
 	}
 	&__label{
 		white-space: nowrap;
@@ -61,7 +76,7 @@
 	}
 	&__input-two-rows{
 		display: inline;
-		width: 193px;
+		max-width: 264px;
 		transform: translateY(-1px);
 	}
 	&__input-bottom{
@@ -69,7 +84,7 @@
 	}
 	
 	&__select, &__select-header, &__select-item{
-		width: 130px;
+		width: 120px;
 		margin: 0 5px 0 0;
 	}
 	&__select-current{

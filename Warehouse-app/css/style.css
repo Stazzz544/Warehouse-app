@@ -98,6 +98,7 @@ h6 {
 
 .select.is-active .select__body {
   display: block;
+  z-index: 1;
 }
 
 .select__header {
@@ -139,6 +140,7 @@ h6 {
   position: absolute;
   right: 0;
   top: 100%;
+  background-color: #ffffff;
 }
 
 .select__item {
@@ -146,7 +148,6 @@ h6 {
   font-size: 14px;
   line-height: 24px;
   padding: 2px;
-  background-color: #ffffff;
 }
 
 .select__item:hover {
@@ -319,7 +320,7 @@ main {
 }
 
 .self-card__flex-right-side {
-  width: 200px;
+  width: 230px;
   margin-left: 30px;
 }
 
@@ -355,6 +356,16 @@ main {
           align-items: center;
 }
 
+.self-card__input-wrapper.height {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.self-card__input-wrapper.low-margin {
+  margin-top: 3px;
+}
+
 .self-card__input-wrapper-select {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -370,6 +381,16 @@ main {
   padding: 2px 10px;
   color: #046e04;
   font-weight: 600;
+}
+
+.self-card__input.height {
+  margin: 0 5px;
+  width: 120px;
+  padding-left: 40px;
+}
+
+.self-card__input-pre-name {
+  line-height: 16px;
 }
 
 .self-card__label {
@@ -388,7 +409,7 @@ main {
 
 .self-card__input-two-rows {
   display: inline;
-  width: 193px;
+  max-width: 264px;
   -webkit-transform: translateY(-1px);
       -ms-transform: translateY(-1px);
           transform: translateY(-1px);
@@ -401,7 +422,7 @@ main {
 .self-card__select,
 .self-card__select-header,
 .self-card__select-item {
-  width: 130px;
+  width: 120px;
   margin: 0 5px 0 0;
 }
 

@@ -5,6 +5,7 @@
 }
 .select.is-active .select__body {
 	display: block;
+	z-index: 1;
 }
 
 .select__header {
@@ -35,13 +36,14 @@
 	position: absolute;
 	right: 0;
 	top: 100%;
+	background-color: #ffffff;
 }
 .select__item {
 	cursor: pointer;
 	font-size: 14px;
 	line-height: 24px;
 	padding: 2px;
-	background-color: #ffffff;
+
 }
 
 .select__item:hover {
