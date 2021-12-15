@@ -21,9 +21,10 @@
 	}
 	&__wrapper {
 		display: inline-block;
-		border: rgb(206, 206, 206) solid 1editpx;
+		border: rgb(206, 206, 206) solid 1px;
 		padding: 45px;
-		background-color:rgb(255, 255, 255)
+		background-color:rgb(255, 255, 255);
+		position: relative;
 	}
 	&__name-and-surname-wrapper{
 		display: flex;
@@ -100,42 +101,68 @@
 	&__select-icon{
 		height: 28px;
 	}
-	&__save-btn{
-		padding: 10px 15px;
-		border-radius: 15px;
-		margin-right: auto;
-		background-color: rgb(182, 230, 173)
+
+	&__btns-wrapper{
+		margin-top: 45px;
+		position: absolute;
+		top: -34px;
+		right: 26px;
+		display: flex;
+		
 	}
-	&__save-btn{
-		padding: 10px 15px;
-		border-radius: 15px;
-		margin-right: auto;
-		background-color: rgb(182, 230, 173)
+	&__svg-wrapper{
+		width: 60px;
+		height: 60px;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		cursor: pointer;
 	}
-	&__save-btn{
-		padding: 10px 15px;
-		border-radius: 15px;
-		margin-right: auto;
-		background-color: rgb(182, 230, 173);
-		font-size: 20px;
+	&__svg-wrapper.save{
+		//background:#aaff02;
+		border: 5px solid #aaff02;
+	}
+	&__svg-wrapper.save:hover{
+		background:#aaff02;
+		transition: 0.6s all;
+		border: 4px solid #000000;
+	}
+	&__svg-wrapper.edit{
+		//background:#ff8800;
+		border: 5px solid #ff8800;
+	}
+	&__svg-wrapper.edit:hover{
+		background:#ff8800;
+		transition: 0.6s all;
+		border: 4px solid #000000;
+	}
+	&__svg-wrapper.del{
+		//background:#ff0000;
+		margin-right: 10px;
+		border: 5px solid #ff0000;
+	}
+	&__svg-wrapper.del:hover{
+		background:#ff0000;
+		transition: 0.6s all;
+		border: 4px solid #000000;
+	}
+
+	&__save-btn, &__del-btn, &__edit-btn{
+		z-index: 2;
+		fill: #000000;
+		width: 33px;
+		height: 33px;
 	}
 	&__del-btn{
-		padding: 10px 15px;
-		border-radius: 15px;
-		background-color: rgb(238, 20, 20);
-		color:rgb(255, 255, 255);
-		max-width: 140px;
+		//color:rgb(255, 255, 255);
+		//max-width: 140px;
 	}
 	&__edit-btn{
-		padding: 10px 10px;
-		border-radius: 15px;
-		background-color: rgb(255, 132, 0);
-		max-width: 140px;
+		//max-width: 140px;
 	}
-	&__btn-wrapper{
-		margin-top: 45px;
-		text-align: center;
-	}
+	
 	&__btn-wrapper-edit-card{
 		display: flex;
 		justify-content: space-between;

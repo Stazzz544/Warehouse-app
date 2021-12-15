@@ -217,7 +217,11 @@ function showSortedStaffsOnPage() {
 	// const sortedSurnamesArr = staff.map( e => e.surname)
 	// sortedSurnamesArr.sort()
 
-	staff.sort((a,b) => a.surname + a.name > b.surname + b.name? 1 : -1)
+	staff.sort((a,b) => {
+		const personDataA = a.surname + a.name + a.patronymic;
+		const personDataB = b.surname + b.name + b.patronymic;
+		return personDataA > personDataB ? 1 : -1;
+	})
 
 	staff.forEach(item => {
 		let patronymic = item.patronymic[0];

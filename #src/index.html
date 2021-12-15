@@ -314,8 +314,12 @@
 							<input class="self-card__input" type="text" id='deliveryOfThings'>
 						</div>
 
-						<div class="self-card__btn-wrapper">
-							<button class="self-card__save-btn" id='saveSelfCard'>Сохранить в базу</button>
+						<div class="self-card__btns-wrapper">
+							<div class="self-card__svg-wrapper save">
+								<svg class='self-card__save-btn' id='saveSelfCard' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+								<path d="M15.5 0h-12.664l-2.836 2.776v12.724c0 0.827 0.673 1.5 1.5 1.5h14c0.827 0 1.5-0.673 1.5-1.5v-14c0-0.827-0.673-1.5-1.5-1.5zM13 1v2h-8v-2h8zM3 16v-1h11v1h-11zM16 15.5c0 0.275-0.224 0.5-0.5 0.5h-0.5v-2h-13v2h-0.5c-0.276 0-0.5-0.225-0.5-0.5v-12.304l2.244-2.196h0.756v3h10v-3h1.5c0.276 0 0.5 0.225 0.5 0.5v14zM8.5 5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zM8.5 11c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5 2.5 1.121 2.5 2.5-1.122 2.5-2.5 2.5z"  />
+								</svg>
+							</div>
 						</div>
 
 					</div>
@@ -334,7 +338,7 @@
 								<div class="self-card__input-wrapper self-card__input-wrapper-select">
 
 									<dib>Компания</dib>
-									<div class="select self-card__select">
+									<div class="select self-card__select company">
 										<div class="select__header self-card__select-header company">
 											<span class="select__current self-card__select-current" id='getWorkplace'>АБЗ</span>
 											<div class="select__icon self-card__select-icon">&times;</div>
@@ -599,10 +603,36 @@
 							<input class="self-card__input" type="text" id='getDeliveryOfThings'>
 						</div>
 
-						<div class="self-card__btn-wrapper self-card__btn-wrapper-edit-card">
+						<!-- <div class="self-card__btn-wrapper self-card__btn-wrapper-edit-card">
 							<button class="self-card__del-btn" id='delSelfCard'>Удалить данные</button>
 							<button class="self-card__edit-btn" id='editSelfCard'>Перезаписать данные</button>
+						</div> -->
+
+						<div class="self-card__btns-wrapper">
+							<div class="self-card__svg-wrapper del">
+								<svg class='self-card__del-btn' id='delSelfCard' version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+										viewBox="0 0 92 92" enable-background="new 0 0 92 92" xml:space="preserve">
+								<path id="XMLID_1235_" d="M78.8,25.5L56.7,3.2C55.9,2.4,54.9,2,53.8,2H16c-2.2,0-4,1.8-4,4v80c0,2.2,1.8,4,4,4h60c2.2,0,4-1.8,4-4
+									V28.3C80,27.2,79.6,26.2,78.8,25.5z M72,30H52V10h0.2L72,30z M20,82V10h24v23.9c0,2.2,1.7,4.1,3.9,4.1H72v44H20z M57.5,52.1
+									l-6.6,6.6l6.6,6.6c1.4,1.4,1.4,3.6,0,4.9c-0.7,0.7-1.6,1-2.5,1c-0.9,0-1.8-0.3-2.5-1L46,63.7l-6.5,6.6c-0.7,0.7-1.6,1-2.5,1
+									c-0.9,0-1.8-0.3-2.5-1c-1.4-1.4-1.4-3.6,0-4.9l6.6-6.6l-6.6-6.6c-1.4-1.4-1.4-3.6,0-4.9c1.4-1.4,3.6-1.4,4.9,0l6.5,6.6l6.5-6.6
+									c1.4-1.4,3.6-1.4,4.9,0C58.9,48.5,58.9,50.7,57.5,52.1z"/>
+								</svg>
+							</div>
+
+							<div class="self-card__svg-wrapper edit">
+									<svg class='self-card__edit-btn' id='editSelfCard' version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+										 width="92px" height="92px" viewBox="0 0 92 92" enable-background="new 0 0 92 92" xml:space="preserve">
+									<path id="XMLID_1259_" d="M86.1,9.2L79,1.9C78.4,1.3,77.6,1,76.8,1h0c-0.8,0-1.6,0.3-2.1,0.9L32.8,44.4c-0.3,0.3-0.5,0.6-0.7,1
+										l-4.7,11.9c-0.4,1.1-0.2,2.4,0.7,3.2c0.6,0.6,1.3,0.9,2.1,0.9c0.4,0,0.7-0.1,1.1-0.2l11.8-4.7c0.4-0.2,0.7-0.4,1-0.7l41.9-42.5
+										C87.3,12.2,87.3,10.3,86.1,9.2z M40.4,51.2l-4.8,1.9l1.9-4.9L76.8,8.3l3,3L40.4,51.2z M71,47.6V88c0,2.2-2,4-4.2,4H10
+										c-2.2,0-4-1.8-4-4V11.8C6,9.6,7.8,8,10,8h41.6c2.2,0,4,1.8,4,4s-1.8,4-4,4H14v68h49V47.6c0-2.2,1.8-4,4-4S71,45.4,71,47.6z"/>
+									</svg>
+									
+								</svg>
+							</div>
 						</div>
+
 					</div>
 
 
