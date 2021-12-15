@@ -149,7 +149,8 @@ function getAllDataFromBase() { //получение данных из базы
 async function addNewPersonCardToFirebase() {
 	await getAllDataFromBase()//получаем последние изменения в базе перед отправкой новой карточки. Это нужно если параллельно кто-то уже внёс изменения в код и мы его теперь не перезатрём.
 	const allFields = getAllFieldFromNewCard()
-	
+	const normContainers = getDataFromTableOfnorms()
+
 	const newWorker = {
 		id: Date.now(),
 
@@ -173,6 +174,7 @@ async function addNewPersonCardToFirebase() {
 		sizeOfMittens: allFields.sizeOfMittens.textContent,
 		gloveSize: allFields.gloveSize.textContent,
 		deliveryOfThings: allFields.deliveryOfThings.value,
+		normContainers: normContainers,
 	}
 
 	const staff = state.company.staff
@@ -343,4 +345,37 @@ function deleteExistStaffCard(){
 	clearAllFieldsInForm(allFields) //очищаем все поля формы
 
 	showStaffsOnPage() //обновляем список
+}
+
+
+
+const tableWrapper = document.querySelector('#normsTable');
+document.querySelector('#addFieldsToNorms').onclick = tableOfnorms
+tableOfnorms()//first start
+
+function tableOfnorms(){
+	
+	tableWrapper.innerHTML +=`
+		<div class="self-card__norm-grid-container created-norm-grid-container" id='${Date.now()}'>
+			<input class="self-card__norm-grid-item input name"></input>
+			<input class="self-card__norm-grid-item input typeNorms" type='number'></input>
+			<input class="self-card__norm-grid-item input measure"></input>
+			<input class="self-card__norm-grid-item input picsForYear" type='number'></input>
+		</div>
+	`
+}
+
+function getDataFromTableOfnorms(){
+	const normsContainers = document.querySelectorAll('.created-norm-grid-container');
+	const arrNormContainers = [];
+	normsContainers.forEach(normsContainer => {
+		arrNormContainers.push({
+			id: normsContainer.getAttribute('id'),
+			name: normsContainer.querySelector('.name').value,
+			typeNorms: normsContainer.querySelector('.typeNorms').value,
+			measure: normsContainer.querySelector('.measure').value,
+			picsForYear: normsContainer.querySelector('.picsForYear').value,
+		})
+	})
+	return arrNormContainers
 }
