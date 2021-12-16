@@ -532,9 +532,14 @@ main {
 }
 
 .self-card__norm-grid-container {
+  position: relative;
   text-align: center;
   display: grid;
   grid-template-columns: 1.3fr 0.8fr 0.8fr 0.8fr;
+}
+
+.self-card__norm-grid-container:hover .self-card__norm-grid-item.del-button-tableOfnorms {
+  display: block;
 }
 
 .self-card__norm-grid-item {
@@ -552,7 +557,7 @@ main {
   border-right: none;
 }
 
-.self-card__norm-grid-item:last-child {
+.self-card__norm-grid-item:nth-child(4) {
   border-right: solid 1px #000000;
 }
 
@@ -570,6 +575,49 @@ main {
   border: solid 1px #000000;
   margin-left: auto;
   margin-right: 0;
+}
+
+.self-card__norm-grid-item-btn-wrapper {
+  position: absolute;
+  width: 35px;
+  height: 41px;
+  right: -34px;
+  top: -1px;
+  border-right: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.self-card__norm-grid-item-btn-wrapper:hover .self-card__norm-grid-item.del-button-tableOfnorms {
+  display: block;
+}
+
+.self-card__norm-grid-item.del-button-tableOfnorms {
+  cursor: pointer;
+  display: none;
+  border: none;
+  font-size: 43px;
+  color: red;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+
+.self-card__norm-grid-item.del-button-tableOfnorms:hover {
+  display: block;
 }
 
 .self-card.active {

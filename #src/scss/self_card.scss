@@ -171,10 +171,15 @@
 		margin-top: 30px;
 	}
 	&__norm-grid-container{
+		position: relative;
 		text-align: center;
 		display:grid;
 		grid-template-columns: 1.3fr 0.8fr 0.8fr 0.8fr
 	}
+	&__norm-grid-container:hover .self-card__norm-grid-item.del-button-tableOfnorms{
+		display: block;
+	}
+
 	&__norm-grid-item{
 		border: solid 1px #000000;
 		height: 40px;
@@ -183,7 +188,8 @@
 		align-items: center;
 		border-right: none;
 	}
-	&__norm-grid-item:last-child{
+	
+	&__norm-grid-item:nth-child(4){
 		border-right: solid 1px #000000;
 	}
 	&__norm-grid-item.input{
@@ -191,7 +197,7 @@
 		text-align: center;
 		color: rgb(4, 110, 4);
 	}
-	&__norm-btn{
+	&__norm-btn{//кнопка - добавить новое поле
 		margin-top: 15px;
 		display: block;
 		padding: 5px 18px;
@@ -199,7 +205,35 @@
 		border: solid 1px #000000;
 		margin-left: auto;
 		margin-right: 0;
+	}
+	&__norm-grid-item-btn-wrapper{
+		position: absolute;
+		width: 35px;
+		height: 41px;
+		right: -34px;
+		top: -1px;
+		border-right: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__norm-grid-item-btn-wrapper:hover .self-card__norm-grid-item.del-button-tableOfnorms{
+		display: block;
+	}
 
+	&__norm-grid-item.del-button-tableOfnorms{
+		cursor: pointer;
+		display: none;
+		border: none;
+		font-size: 43px;
+		color:red;
+		justify-content: center;
+		align-items: center;
+		transform: translateY(-2px);
+		
+	}
+	&__norm-grid-item.del-button-tableOfnorms:hover{
+		display: block;
 	}
 
 }
