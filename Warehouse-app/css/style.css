@@ -620,6 +620,68 @@ main {
   display: block;
 }
 
+.self-card__received {
+  margin-top: 20px;
+}
+
+.self-card__received-grid-container {
+  display: grid;
+  grid-template-columns: repeat(11);
+  grid-template-rows: 15px auto 15px;
+}
+
+.self-card__received-grid-item {
+  text-align: center;
+  border: solid 1px #000000;
+}
+
+.self-card__received-grid-item > .min-width {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin: 0 auto;
+}
+
+.self-card__received-grid-item.gr1 {
+  grid-row: 1/2;
+}
+
+.self-card__received-grid-item.gr2 {
+  grid-row: 2/3;
+  border-right: none;
+  border-bottom: none;
+}
+
+.self-card__received-grid-item.gr2.f {
+  border-right: solid 1px #000000;
+}
+
+.self-card__received-grid-item.gr3 {
+  grid-row: 1/3;
+  border-bottom: none;
+  border-right: none;
+}
+
+.self-card__received-grid-item.gc2-6 {
+  grid-column: 3/7;
+  border-bottom: none;
+  border-right: none;
+}
+
+.self-card__received-grid-item.gc7-12 {
+  grid-column: 7/12;
+  border-bottom: none;
+}
+
+.self-card__received-grid-item.gr3-1 {
+  grid-row: 3/4;
+  border-right: none;
+}
+
+.self-card__received-grid-item.gr3-1:last-child {
+  border-right: 1px solid #000000;
+}
+
 .self-card.active {
   display: block;
 }
