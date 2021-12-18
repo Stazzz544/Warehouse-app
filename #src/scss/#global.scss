@@ -36,3 +36,7 @@ main{
 	justify-content: center;
 	padding-bottom: 50px
 }
+
+input[type='number']{
+	-moz-appearance:textfield;
+}

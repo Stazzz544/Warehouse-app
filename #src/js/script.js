@@ -82,5 +82,3 @@ let select = function () {
 
 select();
 
-
-

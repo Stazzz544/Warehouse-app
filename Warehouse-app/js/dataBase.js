@@ -39,40 +39,51 @@ async function firstStartApp(){
 }
 
 firstStartApp()
-tableOfnorms('#normsTable') //first rendering table of norm
+tableOfnorms('#normsTable') //первый рендер таблицы норм выдачи
+tableOfReceived('#receivedTable')//первый рендер таблицы полученных вещей
 
 
 //================listeners of events==============
+//Добавляет вновь созданную карточку в базу данных (зелёная кнопка сохранить)
 document.querySelector('#saveSelfCard').onclick = addNewPersonCardToFirebase; //add btn
 //---------------------------------------------------
+// Применяет изменения после редактирования карточки (оранж кнопка редактировать)
 document.querySelector('#editSelfCard').onclick = () => editOrDeleteBtn('.modal-edit', editExistStaffCardAndReplaceItInFirebase);
 //---------------------------------------------------
+// Удаление карточки с сохранением результата в БД (красн. кнопка удалить)
 document.querySelector('#delSelfCard').onclick = () => editOrDeleteBtn('.modal-delete', deleteExistStaffCard);
 //---------------------------------------------------
-//show card when you click to the name of person
+// Показать карточку при клике на фамилию в списке
 document.querySelector('#listOfstaff').onclick = showCompliteCard;
 //---------------------------------------------------
-// sort list by alphabet
+// сортировать список карточек по алфавиту
 document.querySelector('.list__sort-alphabet').onclick = showSortedStaffsOnPage;
-// sort list by data
+//---------------------------------------------------
+// сортировать список карточек по дате добавления
 document.querySelector('.list__sort-data').onclick = showStaffsOnPage;
-// add one more row of table in norms
-document.querySelector('#addFieldsToNorms').onclick = () => tableOfnorms('#normsTable')
-// add one more row of table in norms EDIT card
-document.querySelector('#addFieldsToNormsInEdit').onclick = () => tableOfnorms('#getNormsTable')
-//delete buttons listener (row in table of norms)
-addListenerToArrOfElements('.del-button-tableOfnorms', delTargetNormTable)
-
-
-
-//GET ALL FIELDS FUNCTIONS
+//---------------------------------------------------
+// Добавляет поле для ввода норм выдачи в карточке создания
+document.querySelector('#addFieldsToNorms').onclick = () => tableOfnorms('#normsTable');
+//---------------------------------------------------
+// Добавляет поле для ввода норм выдачи в карточке редактирования
+document.querySelector('#addFieldsToNormsInEdit').onclick = () => tableOfnorms('#getNormsTable');
+//---------------------------------------------------
+//Слушатели на все кнопки удаления строк в нормах выдачи(первый старт)
+addListenerToArrOfElements('.del-button-tableOfnorms', delTargetNormTable);
+//---------------------------------------------------
+// Добавляет поле для ввода полученных вещей в карточке редактирования
+document.querySelector('#addFieldsToReceived').onclick = () => tableOfReceived('#receivedTable');
+//---------------------------------------------------
+// Добавляет поле для ввода полученных вещей в карточке редактирования
+document.querySelector('#AddFieldsToReceivedInEdit').onclick = () => tableOfReceived('#getReceivedTable');
+//---------------------------------------------------
 
 //универсальная фенкция, чтобы повесить событие на массив элементов, например найти все кнопки и разом повесить одно событие
 function addListenerToArrOfElements(className, func){
 	document.querySelectorAll(className).forEach(elem => elem.onclick = func) 
 }
 
-
+//функция получает все поля из новой карточки  в переменные
 function getAllFieldFromNewCard(){
 	return {
 		workplace: document.querySelector('#workplace'),
@@ -99,6 +110,7 @@ function getAllFieldFromNewCard(){
 	}
 }
 
+//функция получает все поля из карточки,в разделе редактирование, в переменные
 function getAllFieldFromEditCard(){
 	return {
 		workplace: document.querySelector('#getWorkplace'),
@@ -121,144 +133,11 @@ function getAllFieldFromEditCard(){
 		sizeOfMittens: document.querySelector('#getSizeOfMittens'),
 		gloveSize: document.querySelector('#getGloveSize'),
 		deliveryOfThings: document.querySelector('#getDeliveryOfThings'),
-		//normData: getDataFromTableOfnorms(),
+		normData: getDataFromTableOfnorms('#getNormsTable'),
 	}
 }
 
-function clearAllFieldsInForm(obj) { //очищает поля в форме
-	for(let key in obj) {obj[key].value = '';};
-}
-
-
-//управляет подтверждающими модалками при редактировании или удалении карточек
-function editOrDeleteBtn(nameOfModal, DelOrEditFunc) {
-	const modal = document.querySelector(nameOfModal);
-	const modalBtnYes = modal.querySelector('.modal-confirm__button-yes');
-	const modalBtnNo = modal.querySelector('.modal-confirm__button-no');
-
-	modal.classList.add('active')
-
-	modalBtnNo.addEventListener('click', () => modal.classList.remove('active'))
-	modalBtnYes.addEventListener('click', () => {
-		DelOrEditFunc()
-		modal.classList.remove('active')
-	})
-}
-
-//---------------GET ALL DATA FROM FIREBASE (inicialization)-----------------
-function getAllDataFromBase() { //получение данных из базы
-	const dbref = ref(db);
-
-	return get(child(dbref, "/"))
-	.then(data => {
-		if (data.val() != null){ 
-			state = data.val();
-			state.company.staff = state.company.staff.filter((e) => e != null)
-			return state
-		} else {return inicialState;} //если данных нет - присваеваем каркас из store
-	})
-}
-
-
-
-
-//-----------------ADD NEW PERSON CARD TO FIREBASE ------------------
-async function addNewPersonCardToFirebase() {
-	await getAllDataFromBase()//получаем последние изменения в базе перед отправкой новой карточки. Это нужно если параллельно кто-то уже внёс изменения в код и мы его теперь не перезатрём.
-	const allFields = getAllFieldFromNewCard()
-	//const normData = getDataFromTableOfnorms()
-
-	const newWorker = {
-		id: Date.now(),
-
-		workplace: allFields.workplace.textContent,
-		surname: allFields.surname.value,
-		name: allFields.name.value,
-		patronymic: allFields.patronymic.value,
-		structuralSubdivision: allFields.structuralSubdivision.value,
-		workNumber: allFields.workNumber.value,
-		profession: allFields.profession.value,
-		dateOfStartInCompany: allFields.dateOfStartInCompany.value,
-		dateOfChangeProfession: allFields.dateOfChangeProfession.value,
-		newProfessionInfo: allFields.newProfessionInfo.value,
-		gender: allFields.gender.textContent,
-		height: allFields.height.value,
-		clothingSize: allFields.clothingSize.textContent,
-		shoeSize: allFields.shoeSize.textContent,
-		headgearSize: allFields.headgearSize.textContent,
-		gasMaskSize: allFields.gasMaskSize.textContent,
-		respiratorSize: allFields.respiratorSize.textContent,
-		sizeOfMittens: allFields.sizeOfMittens.textContent,
-		gloveSize: allFields.gloveSize.textContent,
-		deliveryOfThings: allFields.deliveryOfThings.value,
-		normsForEmployee: allFields.normData,
-	}
-
-	const staff = state.company.staff
-	staff.push(newWorker) //пушим в локальный стэйт
-
-	set(ref(db, `company/staff`), staff) //код добавления в базу локального стэйта
-	clearAllFieldsInForm(allFields)// чистим поля формы
-	deleteTableOfNorms('.created-norm-grid-container')//удаляем все таблицы норм выдачи
-	tableOfnorms('#normsTable')//создаём чистую новую строку таблицы норм выдачи
-	getAllDataFromBase()// получаем всю дату из базы
-	showStaffsOnPage() // выводим наш стафф на страницу в бар
-}
-
-//---------------SHOW STAFFS DATA IN SIDEBAR--------------
-
-function showStaffsOnPage() {
-	const out = document.querySelector('.list__out');
-	out.innerHTML = '';
-	const staff = state.company.staff;
-	
-	
-	staff.forEach(e => {
-		let patronymic;
-		if(e.patronymic[0]) patronymic = e.patronymic[0] + '.';
-		else patronymic = '';
-
-		//вывод ФИО сотрудников в сайдбар
-		out.innerHTML += ` 
-		<div class='list__items' firm='${e.workplace}' id='${e.id}'>
-			<div class='list__item'> ${e.surname} ${e.name[0]}. ${patronymic}</div>
-			<img class='list__item-icon'></img>
-		</div>
-		`
-	})
-}
-
-function showSortedStaffsOnPage() {
-	const out = document.querySelector('.list__out');
-	out.innerHTML = '';
-	const json = JSON.stringify(state.company.staff)
-	const staff =  JSON.parse(json)
-
-	// const sortedSurnamesArr = staff.map( e => e.surname)
-	// sortedSurnamesArr.sort()
-
-	staff.sort((a,b) => {
-		const personDataA = a.surname + a.name + a.patronymic;
-		const personDataB = b.surname + b.name + b.patronymic;
-		return personDataA > personDataB ? 1 : -1;
-	})
-
-	staff.forEach(item => {
-		let patronymic = item.patronymic[0];
-		if(patronymic)patronymic += '.';
-		else patronymic = '';
-
-		out.innerHTML += ` 
-		<div class='list__items' firm='${item.workplace}' id='${item.id}'>
-			<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
-			<img class='list__item-icon'></img>
-		</div>
-		`
-	})
-}
-
-
-//------------show full info about one staff------------------
+//Показывает карточку сотрудника со всеми полями
 function showCompliteCard(e) {
 	//перед тем как показать новую карточку - сносим полностью всех детей у родителя таблицы, иначи они будут наслаиваться друг на друга и всё смешается
 	deleteTableOfNorms('.created-norm-grid-container')
@@ -301,8 +180,8 @@ function showCompliteCard(e) {
 		allFields.gloveSize.textContent = wishCard.gloveSize;
 		allFields.deliveryOfThings.value = wishCard.deliveryOfThings;
 
-		//отрисовка таблиц
-		renderOfEistNormsTable(normsForEmployee)
+		//отрисовка таблиц норм выдачи
+		renderOfNormsTable(normsForEmployee)
 
 		//переключаем на показ найденной карточки при клике на сотрудника слева
 		document.querySelector('#makeNewCard').classList.remove('active')
@@ -312,7 +191,49 @@ function showCompliteCard(e) {
 	}
 }
 
+//Функция добавления новой карточки в базу данных
+async function addNewPersonCardToFirebase() {
+	//получаем последние изменения в базе перед отправкой новой карточки. Это нужно если параллельно кто-то уже внёс изменения в код и мы его теперь не перезатрём.
+	await getAllDataFromBase()
+	const allFields = getAllFieldFromNewCard()
 
+	const newWorker = {
+		id: Date.now(),//присваиваем id для возможности дальнейших манёвров
+		workplace: allFields.workplace.textContent,
+		surname: allFields.surname.value,
+		name: allFields.name.value,
+		patronymic: allFields.patronymic.value,
+		structuralSubdivision: allFields.structuralSubdivision.value,
+		workNumber: allFields.workNumber.value,
+		profession: allFields.profession.value,
+		dateOfStartInCompany: allFields.dateOfStartInCompany.value,
+		dateOfChangeProfession: allFields.dateOfChangeProfession.value,
+		newProfessionInfo: allFields.newProfessionInfo.value,
+		gender: allFields.gender.textContent,
+		height: allFields.height.value,
+		clothingSize: allFields.clothingSize.textContent,
+		shoeSize: allFields.shoeSize.textContent,
+		headgearSize: allFields.headgearSize.textContent,
+		gasMaskSize: allFields.gasMaskSize.textContent,
+		respiratorSize: allFields.respiratorSize.textContent,
+		sizeOfMittens: allFields.sizeOfMittens.textContent,
+		gloveSize: allFields.gloveSize.textContent,
+		deliveryOfThings: allFields.deliveryOfThings.value,
+		normsForEmployee: allFields.normData,
+	}
+
+	const staff = state.company.staff
+	staff.push(newWorker) //пушим в локальный стэйт
+
+	set(ref(db, `company/staff`), staff) //код добавления в базу данных нашего локального стэйта
+	clearAllFieldsInForm(allFields)// чистим поля формы
+	deleteTableOfNorms('.created-norm-grid-container')//удаляем все таблицы норм выдачи
+	tableOfnorms('#normsTable')//создаём чистую новую строку таблицы норм выдачи
+	getAllDataFromBase()// получаем всю дату из базы
+	showStaffsOnPage() // выводим наш стафф на страницу в бар
+}
+
+//функция сохранения карточки после её редактирования.
 async function editExistStaffCardAndReplaceItInFirebase(){
 	//все поля с карточки
 	const state = await getAllDataFromBase()
@@ -322,9 +243,8 @@ async function editExistStaffCardAndReplaceItInFirebase(){
 	const parentElement = document.querySelector('#getEmployeeInfo');
 	const parentId = parentElement.getAttribute('employee-id')//получили id карточки
 	const allEmployees = state.company.staff;//получили всех рабочих
-	const lastDataFromNormTables = getDataFromTableOfnorms('#getNormsTable')
-//изменяем поля в объекте рабочего
 
+//изменяем поля в объекте рабочего
 	allEmployees.forEach(elem => { 
 		if(elem.id == parentId){
 			elem.workplace = allField.workplace.textContent;
@@ -347,13 +267,96 @@ async function editExistStaffCardAndReplaceItInFirebase(){
 			elem.sizeOfMittens = allField.sizeOfMittens.textContent;
 			elem.gloveSize = allField.gloveSize.textContent;
 			elem.deliveryOfThings = allField.deliveryOfThings.value;
-			elem.normsForEmployee = lastDataFromNormTables;
+			elem.normsForEmployee = allField.normData;
 		}
 	})
-
 	const staff = state.company.staff
 	set(ref(db, `company/staff`), staff)
 	showStaffsOnPage()
+}
+
+//очищает поля в форме
+function clearAllFieldsInForm(obj) { 
+	for(let key in obj) {obj[key].value = '';};
+}
+
+
+//управляет подтверждающими модалками при редактировании или удалении карточек
+function editOrDeleteBtn(nameOfModal, delOrEditFunc) {
+	const modal = document.querySelector(nameOfModal);
+	const modalBtnYes = modal.querySelector('.modal-confirm__button-yes');
+	const modalBtnNo = modal.querySelector('.modal-confirm__button-no');
+
+	modal.classList.add('active')
+
+	modalBtnNo.addEventListener('click', () => modal.classList.remove('active'))
+	modalBtnYes.addEventListener('click', () => {
+		delOrEditFunc() // <-- приходит как аргумент
+		modal.classList.remove('active')
+	})
+}
+
+//---------------GET ALL DATA FROM FIREBASE (inicialization)-----------------
+//Файербэйсовская функция, нужно её изучить получше
+function getAllDataFromBase() { //получение данных из базы
+	const dbref = ref(db);
+
+	return get(child(dbref, "/"))
+	.then(data => {
+		if (data.val() != null){ 
+			state = data.val();
+			state.company.staff = state.company.staff.filter((e) => e != null)
+			return state
+		} else {return inicialState;} //если данных нет - присваеваем каркас из store
+	})
+}
+
+//Функция вывода списка сотрудников в сайдбар. По умолчанию выводит в порядке добавления в базу данных
+function showStaffsOnPage() {
+	const out = document.querySelector('.list__out');
+	out.innerHTML = '';
+	const staff = state.company.staff;
+	
+	staff.forEach(e => {
+		let patronymic;
+		if(e.patronymic[0]) patronymic = e.patronymic[0] + '.';
+		else patronymic = '';
+
+		//вывод ФИО сотрудников в сайдбар
+		out.innerHTML += ` 
+		<div class='list__items' firm='${e.workplace}' id='${e.id}'>
+			<div class='list__item'> ${e.surname} ${e.name[0]}. ${patronymic}</div>
+			<img class='list__item-icon'></img>
+		</div>
+		`
+	})
+}
+
+//функция сортирующая список сотрудников в сайдбаре по алфавиту
+function showSortedStaffsOnPage() {
+	const out = document.querySelector('.list__out');
+	out.innerHTML = '';
+	const json = JSON.stringify(state.company.staff)
+	const staff =  JSON.parse(json)
+
+	staff.sort((a,b) => {
+		const personDataA = a.surname + a.name + a.patronymic;
+		const personDataB = b.surname + b.name + b.patronymic;
+		return personDataA > personDataB ? 1 : -1;
+	})
+
+	staff.forEach(item => {
+		let patronymic = item.patronymic[0];
+		if(patronymic)patronymic += '.';
+		else patronymic = '';
+
+		out.innerHTML += ` 
+		<div class='list__items' firm='${item.workplace}' id='${item.id}'>
+			<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
+			<img class='list__item-icon'></img>
+		</div>
+		`
+	})
 }
 
 function deleteExistStaffCard(){
@@ -374,7 +377,7 @@ function deleteExistStaffCard(){
 }
 
 
-
+//создаёт новую строку в таблице норм выдачи
 function tableOfnorms(id){
 	const tableWrapper = document.querySelector(id);
 	const div = document.createElement("div")
@@ -392,8 +395,33 @@ function tableOfnorms(id){
 `
 	tableWrapper.append(div)
 	//обновляем слушатели кнопок
-	addListenerToArrOfElements('.del-button-tableOfnorms')
+	addListenerToArrOfElements('.del-button-tableOfnorms', delTargetNormTable)
 }
+
+function tableOfReceived(id){
+	const tableWrapper = document.querySelector(id);
+	const div = document.createElement("div")
+	div.classList.add('self-card__received-grid-container')
+	div.classList.add('add')
+	div.setAttribute('id', Date.now())
+	div.innerHTML = `
+		<textarea class="self-card__received-grid-item add textarea"></textarea>
+		<textarea class="self-card__received-grid-item add textarea"></textarea>
+		<input class="self-card__received-grid-item add" type='date'></input>
+		<input class="self-card__received-grid-item add" type='number'></input>
+		<input class="self-card__received-grid-item add" type='number'></input>
+		<textarea class="self-card__received-grid-item add textarea" ></textarea>
+		<input class="self-card__received-grid-item add" type='date'></input>
+		<input class="self-card__received-grid-item add" type='number'></input>
+		<input class="self-card__received-grid-item add" type='number'></input>
+		<textarea class="self-card__received-grid-item add textarea"></textarea>
+		<textarea class="self-card__received-grid-item add textarea f"></textarea>
+	`
+	tableWrapper.append(div)
+
+	//сюда нужно будет вставить обновление слушателей кнопок
+}
+
 
 //универсальная функция. получает класс, находит все теги с таким классом и удаляет их. Удобно использовать на врапперах
 function deleteTableOfNorms(classOfcontainer){
@@ -401,6 +429,7 @@ function deleteTableOfNorms(classOfcontainer){
 	normsContainer.forEach(elem => elem.remove());
 }
 
+//Функция собирает данные из всех полей таблицы норм выдачи и возвращает в качестве массива объектов
 function getDataFromTableOfnorms(id){
 	const parent = document.querySelector(id)
 	const normsContainers = parent.querySelectorAll('.created-norm-grid-container');
@@ -417,7 +446,8 @@ function getDataFromTableOfnorms(id){
 	return arrNormContainers
 }
 
-function renderOfEistNormsTable(arrNormsForEmployee){
+//когда мы хотим просмотреть чью-то карточку, функция собирает и выводит заполненную таблицу норм выдачи на страницу
+function renderOfNormsTable(arrNormsForEmployee){
 	const tableWrapper = document.querySelector('#getNormsTable');
 
 	if(arrNormsForEmployee) {
@@ -437,23 +467,31 @@ function renderOfEistNormsTable(arrNormsForEmployee){
 		`
 			tableWrapper.append(div)
 			//обновляем слушатели кнопок
-			addListenerToArrOfElements('.del-button-tableOfnorms')
+			addListenerToArrOfElements('.del-button-tableOfnorms', delTargetNormTable)
 		})
 	}	
 }
 
+//ф-ция удаления строки таблицы норм. Также удаляет строку из стэйт. Сохранение нужер инициировать нажатием кнопки сохранить изменения(оранжевая)
 function delTargetNormTable(e){
-	const target = e.target
-	
-	target.closest('.self-card__norm-grid-container').remove()
-	console.log(target.closest('.self-card__norm-grid-container'))
+	let targetBtn;
+	let targetCard;
 
-	//state.company.staff
-	const parent = target.closest('.employee-info')
-	console.log('parent closest', parent)
-	const parentId = parent.getAttribute('employee-id')
-	if(parentId){
-		console.log(parentId)
+	 //кнопка удаления по которой клик
+	if(e.target.classList.contains('del-button-tableOfnorms'))  targetBtn = e.target;
+
+	//id строки таблици которую нужно удалить
+	const tableOfNormsRow = targetBtn.closest('.self-card__norm-grid-container') // этот тег будем вконце удалять, чтобы визуально изменить вид таблицы до сохранения состояния
+	const idTableOfNormsRow =  tableOfNormsRow.getAttribute('id');
+	//id ниже есть только у существующих карт. Новая карта возвращает null
+	//нужен для поиска карточки в state.company.staff
+	const idCardOfEmployeeId = targetBtn.closest('.main-content__page').getAttribute('employee-id');
+	if (idCardOfEmployeeId) {
+		const anyCard = state.company.staff //все карточки из state
+		//ищем нужную карточку в стэйте и ссылаемся на её объект в targetCard
+		anyCard.forEach(elem => {if (elem.id == idCardOfEmployeeId) targetCard = elem;})
+		//ищем запись таблицы и удаляем её из стэйта (normsForEmployee - поле таблицы где лежат массивы. Внутри хранится  id по которым и сортируемся)
+		targetCard.normsForEmployee = targetCard.normsForEmployee.filter(e => e.id != idTableOfNormsRow)
 	}
-	
+	tableOfNormsRow.remove()
 }
