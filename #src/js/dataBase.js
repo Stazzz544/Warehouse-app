@@ -70,6 +70,7 @@ document.querySelector('#addFieldsToNormsInEdit').onclick = () => tableOfnorms('
 //---------------------------------------------------
 //Слушатели на все кнопки удаления строк в нормах выдачи(первый старт)
 addListenerToArrOfElements('.del-button-tableOfnorms', delTargetNormTable);
+//Слушатели на все кнопки удаления строк в таблице получения предметов(первый старт)
 addListenerToArrOfElements('.del-button-tableOfReceived', delTargetReceivedTable);
 //---------------------------------------------------
 // Добавляет поле для ввода полученных вещей в карточке редактирования
