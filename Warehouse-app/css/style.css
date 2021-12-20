@@ -209,6 +209,10 @@ main {
   padding-bottom: 50px;
 }
 
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 .header {
   height: 60px;
   width: 100%;
@@ -538,10 +542,6 @@ main {
   grid-template-columns: 1.3fr 0.8fr 0.8fr 0.8fr;
 }
 
-.self-card__norm-grid-container:hover .self-card__norm-grid-item.del-button-tableOfnorms {
-  display: block;
-}
-
 .self-card__norm-grid-item {
   border: solid 1px #000000;
   height: 40px;
@@ -567,22 +567,31 @@ main {
   color: #046e04;
 }
 
-.self-card__norm-btn {
+.self-card__norm-btn,
+.self-card__received-btn {
   margin-top: 15px;
   display: block;
-  padding: 5px 18px;
+  padding: 9px 18px;
   background: #acf364;
   border: solid 1px #000000;
   margin-left: auto;
   margin-right: 0;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
-.self-card__norm-grid-item-btn-wrapper {
+.self-card__norm-btn:hover,
+.self-card__received-btn:hover {
+  background: #8ec953;
+}
+
+.self-card__norm-grid-item-btn-wrapper,
+.self-card__received-grid-item-btn-wrapper {
   position: absolute;
   width: 35px;
   height: 41px;
-  right: -34px;
-  top: -1px;
   border-right: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -595,15 +604,29 @@ main {
           align-items: center;
 }
 
-.self-card__norm-grid-item-btn-wrapper:hover .self-card__norm-grid-item.del-button-tableOfnorms {
+.self-card__received-grid-item-btn-wrapper {
+  right: -28px;
+  top: 3px;
+}
+
+.self-card__norm-grid-item-btn-wrapper {
+  right: -32px;
+  top: 1px;
+}
+
+.self-card__received-grid-item-btn-wrapper:hover .del-button-tableOfReceived,
+.self-card__received-grid-container-created:hover .del-button-tableOfReceived,
+.self-card__norm-grid-container:hover .del-button-tableOfnorms,
+.self-card__norm-grid-item-btn-wrapper:hover .del-button-tableOfnorms {
   display: block;
 }
 
-.self-card__norm-grid-item.del-button-tableOfnorms {
+.self-card__norm-grid-item.del-button-tableOfnorms,
+.self-card__received-grid-item.del-button-tableOfReceived {
   cursor: pointer;
   display: none;
   border: none;
-  font-size: 43px;
+  font-size: 35px;
   color: red;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -611,28 +634,39 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transform: translateY(-2px);
-      -ms-transform: translateY(-2px);
-          transform: translateY(-2px);
 }
 
-.self-card__norm-grid-item.del-button-tableOfnorms:hover {
-  display: block;
-}
-
-.self-card__received {
+.self-card__received-wrapper {
+  border: #cecece solid 1px;
   margin-top: 20px;
+  background-color: #ffffff;
+  padding: 40px 20px;
+  max-width: 812px;
 }
 
 .self-card__received-grid-container {
   display: grid;
-  grid-template-columns: repeat(11);
-  grid-template-rows: 15px auto 15px;
+  grid-template-columns: 115px 115px 75px 50px 50px 60px 75px 50px 60px 60px 60px;
+  grid-template-rows: 25px 70px 25px;
+}
+
+.self-card__received-grid-container-created {
+  grid-template-rows: auto;
+  position: relative;
 }
 
 .self-card__received-grid-item {
   text-align: center;
   border: solid 1px #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .self-card__received-grid-item > .min-width {
@@ -678,12 +712,59 @@ main {
   border-right: none;
 }
 
-.self-card__received-grid-item.gr3-1:last-child {
+.self-card__received-grid-item.gr3-1.f {
   border-right: 1px solid #000000;
+}
+
+.self-card__received-grid-item.received {
+  height: 50px;
+  border-top: none;
+  border-right: none;
+}
+
+.self-card__received-grid-item.received.f {
+  border-right: 1px solid #000000;
+}
+
+.self-card__received-grid-item.textarea {
+  resize: none;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.self-card__received-grid-item[type=date] {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .self-card.active {
   display: block;
+}
+
+::-webkit-calendar-picker-indicator {
+  margin: 0;
+  margin-top: 5px;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+::-webkit-datetime-edit:last-child {
+  display: none;
 }
 
 .employee-info {
