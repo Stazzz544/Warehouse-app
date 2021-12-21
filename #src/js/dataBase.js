@@ -141,19 +141,30 @@ function getAllFieldFromEditCard(){
 	}
 }
 
+
+///////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //Показывает карточку сотрудника со всеми полями
 function showCompliteCard(e) {
+	e.stopPropagation()
 	//перед тем как показать новую карточку - сносим полностью всех детей у родителя таблицы, иначи они будут наслаиваться друг на друга и всё смешается
 	deleteTable('.created-norm-grid-container');
 	deleteTable('.self-card__received-grid-container-created');
-	const target = e.target;
+	const target = e.path[0];
+	console.log(target)
 
-	if (target.classList.contains('list__item')) {
+
+	if (target.classList.contains('list__items')) {
 		const collectionOfListItem = document.querySelectorAll('.list__item');
-		toggleClassActive(collectionOfListItem ,target);
+		toggleClassActive(collectionOfListItem, target);
+
+		
+		const parents = document.querySelectorAll('.list__items')
+		const targetParent = target.closest('.list__items')
+		//добавляем класс активности для бокового списка 
+		toggleClassActive(parents, targetParent);
 
 		//ищем id в атрибуте
-		const parentId = target.closest('.list__items').getAttribute('id');
+		const parentId = targetParent.getAttribute('id');
 
 		//устанавливаем карте атрибут для возможности последующего удаления или редактирования карты и отправки в базу. По этому атрибуту будем искать совпадение в state
 		document.querySelector('#getEmployeeInfo').setAttribute('employee-id', parentId);
@@ -335,7 +346,7 @@ function showStaffsOnPage() {
 		out.innerHTML += ` 
 		<div class='list__items' firm='${e.workplace}' id='${e.id}'>
 			<div class='list__item'> ${e.surname} ${e.name[0]}. ${patronymic}</div>
-			<img class='list__item-icon'></img>
+			<div>${e.workplace == 'СТРОЙЛЮКС'? 'С-ЛЮКС' : e.workplace}</div>
 		</div>
 		`;
 	});
@@ -354,15 +365,15 @@ function showSortedStaffsOnPage() {
 		return personDataA > personDataB ? 1 : -1;
 	})
 
-	staff.forEach(item => {
-		let patronymic = item.patronymic[0];
+	staff.forEach(e => {
+		let patronymic = e.patronymic[0];
 		if(patronymic)patronymic += '.';
 		else patronymic = '';
 
 		out.innerHTML += ` 
-		<div class='list__items' firm='${item.workplace}' id='${item.id}'>
-			<div class='list__item'> ${item.surname} ${item.name[0]}. ${patronymic}</div>
-			<img class='list__item-icon'></img>
+		<div class='list__items' firm='${e.workplace}' id='${e.id}'>
+			<div class='list__item'> ${e.surname} ${e.name[0]}. ${patronymic}</div>
+			<div>${e.workplace == 'СТРОЙЛЮКС'? 'С-ЛЮКС' : e.workplace}</div>
 		</div>
 		`;
 	});

@@ -1,5 +1,5 @@
 .list{
-	background-color: rgb(203, 225, 255);
+	background-color: rgb(255, 255, 255);
 	max-width: 250px;
 	padding: 15px 15px;
 	&__title{
@@ -11,15 +11,25 @@
 		margin-top: 30px;
 	}
 	&__items{
+		border-top: solid 1px rgb(211, 211, 211);
 		cursor: pointer;
+		transition: 0.4s all;
+		display:flex;
+		align-items:center;
+		justify-content: space-between;
+		height: 30px;
+
+	}
+	&__items.active{
+		background: rgb(237, 247, 255);
+
 	}
 	&__item.active{
 		font-weight: 600;
+		
 	}
 	&__item{
-		padding-top: 12px;
-		line-height: 8px;
-		border-top: solid 1px rgb(255, 255, 255);
+		
 	}
 	&__item-icon{
 
