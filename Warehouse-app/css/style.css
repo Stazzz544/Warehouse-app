@@ -199,7 +199,6 @@ main {
 }
 
 .main-content-field {
-  background: url("../img/bg/bg.jpg");
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,6 +206,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   padding-bottom: 50px;
+  background-color: #d6d6d6;
 }
 
 input[type='number'] {
@@ -220,6 +220,17 @@ input[type='number'] {
 
 .navigation {
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: #cecece solid 1px;
+  -webkit-transform: translateX(10px);
+      -ms-transform: translateX(10px);
+          transform: translateX(10px);
+}
+
+.navigation__plug {
+  width: 250px;
 }
 
 .navigation__list {
@@ -233,13 +244,20 @@ input[type='number'] {
 }
 
 .navigation__list-item {
-  margin-left: 60px;
   font-size: 18px;
+  padding: 19px 20px 18px 20px;
+  margin-top: 7px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-top: #cecece solid 1px;
+  border-left: #cecece solid 1px;
+  border-right: #cecece solid 1px;
   cursor: pointer;
 }
 
 .navigation__list-item.active {
-  font-weight: 600;
+  background: white;
+  background-color: #d6d6d6;
 }
 
 .footer {
@@ -259,8 +277,21 @@ input[type='number'] {
 
 .list {
   background-color: white;
-  max-width: 250px;
+  width: 250px;
   padding: 15px 15px;
+  border-right: #cecece solid 1px;
+  position: relative;
+}
+
+.list::before {
+  content: '';
+  background-color: white;
+  width: 250px;
+  height: 60px;
+  border-right: #cecece solid 1px;
+  position: absolute;
+  top: -60px;
+  left: 0;
 }
 
 .list__title {
@@ -289,10 +320,16 @@ input[type='number'] {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 30px;
+  padding: 0 10px;
 }
 
 .list__items.active {
   background: #edf7ff;
+  padding-left: 30px;
+}
+
+.list__items:hover {
+  background: #d2e6f3;
 }
 
 .list__item.active {
@@ -855,5 +892,3 @@ input[type='number'] {
   display: -ms-flexbox;
   display: flex;
 }
-
-.webp .main-content-field { background: url(../img/bg/bg.webp); }

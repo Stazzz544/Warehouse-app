@@ -145,19 +145,19 @@ function getAllFieldFromEditCard(){
 ///////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //Показывает карточку сотрудника со всеми полями
 function showCompliteCard(e) {
-	e.stopPropagation()
+	//e.stopPropagation()
 	//перед тем как показать новую карточку - сносим полностью всех детей у родителя таблицы, иначи они будут наслаиваться друг на друга и всё смешается
 	deleteTable('.created-norm-grid-container');
 	deleteTable('.self-card__received-grid-container-created');
-	const target = e.path[0];
-	console.log(target)
-
+	let target = e.target;
+	
+	if(e.target.classList.contains('list__item')) {
+		target = target.closest('.list__items');
+	}
 
 	if (target.classList.contains('list__items')) {
 		const collectionOfListItem = document.querySelectorAll('.list__item');
 		toggleClassActive(collectionOfListItem, target);
-
-		
 		const parents = document.querySelectorAll('.list__items')
 		const targetParent = target.closest('.list__items')
 		//добавляем класс активности для бокового списка 
@@ -346,7 +346,7 @@ function showStaffsOnPage() {
 		out.innerHTML += ` 
 		<div class='list__items' firm='${e.workplace}' id='${e.id}'>
 			<div class='list__item'> ${e.surname} ${e.name[0]}. ${patronymic}</div>
-			<div>${e.workplace == 'СТРОЙЛЮКС'? 'С-ЛЮКС' : e.workplace}</div>
+			<div class='list__item'>${e.workplace == 'СТРОЙЛЮКС'? 'С-ЛЮКС' : e.workplace}</div>
 		</div>
 		`;
 	});
