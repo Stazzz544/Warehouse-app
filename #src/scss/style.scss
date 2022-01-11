@@ -6,7 +6,7 @@
 @import 'lib/custom-select';
 
 //common classes
-@import '#global';
+@import 'global';
 
 //blocks
 @import 'header';
@@ -22,5 +22,7 @@
 
 //modal
 @import 'modal/modal_confirm';
+@import 'modal/auth';
+
 
 
