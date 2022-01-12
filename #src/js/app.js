@@ -34,7 +34,7 @@ import {
 } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./modules/firebaseConfig.js";
-import {regisration, login, logout, getUserProfile, updateUserProfile} from "./modules/firebaseAuth.js";
+import {regisration, login, logout, getUserProfile, updateUserProfile, isLoginBefore} from "./modules/firebaseAuth.js";
 
 export let inicialState = {
 	company:{
@@ -49,7 +49,7 @@ export const db = getDatabase();
 
 isWebp();
 select();
-
+isLoginBefore(startApp);
 
 
 
@@ -106,6 +106,7 @@ document.querySelector('#signInBtn').onclick = () => login(startApp)
 
 
 
+//проверка не авторизировался ли пользователь ранее
 
 
 

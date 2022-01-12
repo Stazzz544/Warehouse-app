@@ -2,7 +2,9 @@ import { auth, app, db } from '../app.js'
 import { getAuth,
 			createUserWithEmailAndPassword, 
 			signInWithEmailAndPassword, 
-			updateProfile  
+			updateProfile,
+			browserSessionPersistence,
+			setPersistence
 } from "firebase/auth";
 
 
@@ -16,7 +18,7 @@ function getFieldsRegistrationForm(){
 	}
 }
 
-export function regisration(startDb) {
+export function regisration(startApp) {
 	const formData = getFieldsRegistrationForm()
 
 	if(!/^[^@]+@\w+(\.\w+)+\w$/.test(formData.email)){
@@ -36,7 +38,7 @@ export function regisration(startDb) {
 	  const user = userCredential.user;
 	  console.log('user created')
 	  formData.authForm.classList.remove('active')
-	  startDb()
+	  startApp()
 	})
 	.catch((error) => {
 	  const errorCode = error.code;
@@ -48,23 +50,39 @@ export function regisration(startDb) {
 	
 }
 
-export function login(startDb) {
+export function login(startApp) {
 	const email = document.querySelector('#email').value;
 	const password = document.querySelector('#password').value;
 	const authForm = document.querySelector('.auth')
 
-	signInWithEmailAndPassword(auth, email, password)
-	.then((userCredential) => {
-	  // Signed in 
-	  const user = userCredential.user;
-	  authForm.classList.remove('active')
-	  startDb()
-	  // ...
-	})
-	.catch((error) => {
-	  const errorCode = error.code;
-	  const errorMessage = error.message;
-	});
+	const auth = getAuth();
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return signInWithEmailAndPassword(auth, email, password)
+	 .then((userCredential) => {
+		// Signed in 
+		const user = userCredential.user;
+		authForm.classList.remove('active')
+		startApp()
+		// ...
+	 })
+	 .catch((error) => {
+		const errorCode = error.code;
+		const errorMessage = error.message;
+	 });
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+	
 }
 
 export function logout() {
@@ -109,3 +127,13 @@ export function updateUserProfile (){
 	 });
 }
 
+export function isLoginBefore(startApp) {
+	
+	const user = auth.currentUser;
+	console.log(user)
+	if (user !== null) {
+		startApp();
+		const formData = getFieldsRegistrationForm();
+		formData.authForm.classList.remove('active');
+	};
+};
