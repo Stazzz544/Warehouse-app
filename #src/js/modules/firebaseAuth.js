@@ -4,19 +4,12 @@ import { getAuth,
 			signInWithEmailAndPassword, 
 			updateProfile,
 			browserSessionPersistence,
-			setPersistence
+			setPersistence,
+			signOut
 } from "firebase/auth";
 
 
-function getFieldsRegistrationForm(){
-	return  {
-		name:document.querySelector('#userName').value,
-		email:document.querySelector('#email').value,
-	 	password:document.querySelector('#password').value,
-	 	outField:document.querySelector('.auth__out'),
-	 	authForm:document.querySelector('.auth'),
-	}
-}
+
 
 export function regisration(startApp) {
 	const formData = getFieldsRegistrationForm()
@@ -38,16 +31,28 @@ export function regisration(startApp) {
 	  const user = userCredential.user;
 	  console.log('user created')
 	  formData.authForm.classList.remove('active')
-	  startApp()
+	})
+	.then(() => {
+		updateUserProfile(formData.name);
+		startApp();
 	})
 	.catch((error) => {
 	  const errorCode = error.code;
 	  const errorMessage = error.message;
 	  console.log('errorCode: ', errorCode);
 	  console.log('errorMessage: ', errorMessage);
-	  // ..
 	});
 	
+}
+
+async function updateUserProfile(userName) {
+	await updateProfile(auth.currentUser, {
+		displayName: userName
+	 }).then(() => {
+		console.log('user name established as ' + userName)
+	 }).catch((error) => {
+		console.log(error)
+	 });
 }
 
 export function login(startApp) {
@@ -69,6 +74,7 @@ setPersistence(auth, browserSessionPersistence)
 		const user = userCredential.user;
 		authForm.classList.remove('active')
 		startApp()
+		showUserAndLogoutBtn(user.displayName)
 		// ...
 	 })
 	 .catch((error) => {
@@ -78,8 +84,8 @@ setPersistence(auth, browserSessionPersistence)
   })
   .catch((error) => {
     // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
+	 console.log(error.code)
+	 console.log(error.message)
   });
 
 	
@@ -93,6 +99,10 @@ export function logout() {
 	 });
 }
 
+
+
+
+//=======================current user
 
 export function getUserProfile(){
 	const user = auth.currentUser;
@@ -114,17 +124,14 @@ export function getUserProfile(){
 	}
 }
 
-export function updateUserProfile (){
-	updateProfile(auth.currentUser, {
-		displayName: "Jane Q. User", 
-		//photoURL: "https://example.com/jane-q-user/profile.jpg"
-	 }).then(() => {
-		// Profile updated!
-		// ...
-	 }).catch((error) => {
-		// An error occurred
-		// ...
-	 });
+function getFieldsRegistrationForm(){
+	return  {
+		name:document.querySelector('#userName').value,
+		email:document.querySelector('#email').value,
+	 	password:document.querySelector('#password').value,
+	 	outField:document.querySelector('.auth__out'),
+	 	authForm:document.querySelector('.auth'),
+	}
 }
 
 export function isLoginBefore(startApp) {
@@ -137,3 +144,17 @@ export function isLoginBefore(startApp) {
 		formData.authForm.classList.remove('active');
 	};
 };
+
+function showUserAndLogoutBtn(userName){
+	const out = document.querySelector('.navigation__plug')
+	out.innerHTML = `
+	<div>${userName}</div>
+	<div>
+		<button id="logout">Выйти</button>
+	</div>
+	`;
+	document.querySelector('#logout').addEventListener('click', () => {
+		logout();
+		location.reload();
+	})
+}

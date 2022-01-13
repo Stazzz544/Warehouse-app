@@ -4,17 +4,7 @@
 	padding: 15px 15px;
 	border-right: #cecece solid 1px;
 	position: relative;
-	&::before{
-		content: '';
-		background-color: rgb(255, 255, 255);
-		width: 250px;
-		height: 60px;
-		border-right: #cecece solid 1px;
-		position: absolute;
-		top: -60px;
-		left: 0;
-
-	}
+	
 	&__title{
 		font-size: 16px;
 		font-weight: 600;

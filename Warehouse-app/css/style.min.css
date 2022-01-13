@@ -275,16 +275,6 @@ input[type=number] {
   border-right: #cecece solid 1px;
   position: relative;
 }
-.list::before {
-  content: "";
-  background-color: white;
-  width: 250px;
-  height: 60px;
-  border-right: #cecece solid 1px;
-  position: absolute;
-  top: -60px;
-  left: 0;
-}
 .list__title {
   font-size: 16px;
   font-weight: 600;
