@@ -5,7 +5,8 @@ import { getAuth,
 			updateProfile,
 			browserSessionPersistence,
 			setPersistence,
-			signOut
+			signOut,
+			onAuthStateChanged
 } from "firebase/auth";
 
 
@@ -106,6 +107,7 @@ export function logout() {
 
 export function getUserProfile(){
 	const user = auth.currentUser;
+
 	if (user !== null) {
 
 		const displayName = user.displayName;
@@ -122,6 +124,7 @@ export function getUserProfile(){
 			console.log("  Photo URL: " + profile.photoURL);
 		});
 	}
+	console.log(user)
 }
 
 function getFieldsRegistrationForm(){
@@ -157,4 +160,14 @@ function showUserAndLogoutBtn(userName){
 		logout();
 		location.reload();
 	})
+}
+
+export function autoLoginUser(){
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+		  getUserProfile()
+		} else {
+			console.log('no user')
+		}
+	});
 }

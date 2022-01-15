@@ -18,6 +18,7 @@ import {
 	deleteTable,
 	delTargetNormTable,
 	delTargetReceivedTable,
+	
 	// firstStartApp,
 	//addNewPersonCardToFirebase,
 	// editExistStaffCardAndReplaceItInFirebase,
@@ -34,21 +35,24 @@ import {
 } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./modules/firebaseConfig.js";
-import {regisration, login, logout, getUserProfile, updateUserProfile} from "./modules/firebaseAuth.js";
+import {regisration, login, autoLoginUser, logout , updateUserProfile} from "./modules/firebaseAuth.js";
 
 export let inicialState = {
 	company:{
 		staff:[],
 	}
-};	
+};
+
 export let state = {}
-export const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig)
 export const auth = getAuth();
 export const db = getDatabase();
 
-
 isWebp();
 select();
+autoLoginUser();
+
+
 
 
 
