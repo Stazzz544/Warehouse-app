@@ -222,12 +222,28 @@ input[type=number] {
   display: -ms-flexbox;
   display: flex;
   border-bottom: #cecece solid 1px;
-  -webkit-transform: translateX(10px);
-      -ms-transform: translateX(10px);
-          transform: translateX(10px);
 }
 .navigation__plug {
-  width: 250px;
+  width: 261.5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.navigation__plug-username {
+  font-weight: 600;
+  color: #a92626;
+  font-size: 18px;
+}
+.navigation__plug-logout-btn {
+  background: none;
+  font-weight: 600;
+  color: #24168a;
+  font-size: 18px;
 }
 .navigation__list {
   height: 100%;
@@ -270,10 +286,14 @@ input[type=number] {
 }
 .list {
   background-color: white;
-  width: 250px;
+  width: 262px;
   padding: 15px 15px;
   border-right: #cecece solid 1px;
   position: relative;
+}
+.list__holder {
+  width: 262px;
+  height: 3px;
 }
 .list__title {
   font-size: 16px;

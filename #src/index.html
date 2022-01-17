@@ -29,6 +29,7 @@
 		<section class="content">
 
 			<aside class="list" id="listOfstaff">
+				<div class="list__holder"></div>
 				<h2 class='list__title'> Список сотрудников из базы данных:</h2>
 				<div class="list__sort-wrapper">
 					<div class="list__sort-text">Сортировать список по:</div>
@@ -69,12 +70,12 @@
 
 								<div class="self-card__input-wrapper">
 									<label class="self-card__label" for="surname">Фамилия</label>
-									<input class="self-card__input" type="text" id='surname'>
+									<input class="self-card__input" type="text" autocomplete="off" id='surname'>
 								</div>
 
 								<div class="self-card__name-and-surname-wrapper">
 									<div class="self-card__input-wrapper">
-										<label class="self-card__label" for="name">Имя</label>
+										<label class="self-card__label" for="name" autocomplete="off" >Имя</label>
 										<input class="self-card__input" type="text" id='name'>
 									</div>
 									<div class="self-card__input-wrapper">

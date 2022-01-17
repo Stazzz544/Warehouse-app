@@ -18,7 +18,7 @@ import {
 	deleteTable,
 	delTargetNormTable,
 	delTargetReceivedTable,
-	
+	getAllFieldFromNewCard
 	// firstStartApp,
 	//addNewPersonCardToFirebase,
 	// editExistStaffCardAndReplaceItInFirebase,
@@ -30,19 +30,19 @@ import {
 	get,
 	set,
 	child,
+	
 	update,
 	remove
 } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./modules/firebaseConfig.js";
-import {regisration, login, autoLoginUser, logout , updateUserProfile} from "./modules/firebaseAuth.js";
+import {regisration, login, autoLoginUser, showUserAndLogout, logout , updateUserProfile, getUserProfile} from "./modules/firebaseAuth.js";
 
 export let inicialState = {
 	company:{
 		staff:[],
 	}
 };
-
 export let state = {}
 export const app = initializeApp(firebaseConfig)
 export const auth = getAuth();
@@ -50,11 +50,7 @@ export const db = getDatabase();
 
 isWebp();
 select();
-autoLoginUser();
-
-
-
-
+autoLoginUser(startApp);//if user entered before
 
 
 
@@ -213,10 +209,14 @@ document.querySelector('#signInBtn').onclick = () => login(startApp)
 	})
 }
 
-async function startApp(){
+async function startApp(regName){
 	state = await getAllDataFromBase()// асинхронная функция
+	getUserProfile() ? showUserAndLogout(getUserProfile()) : showUserAndLogout(regName)
+
+	//showUserAndLogout(userName)
 	showStaffsOnPage()// синхронная функция, выполнить после асинхронной
 }
+
 
 
 

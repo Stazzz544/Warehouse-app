@@ -1,9 +1,13 @@
 .list{
 	background-color: rgb(255, 255, 255);
-	width: 250px;
+	width: 262px;
 	padding: 15px 15px;
 	border-right: #cecece solid 1px;
 	position: relative;
+	&__holder{
+		width: 262px;
+		height: 3px;
+	}
 	
 	&__title{
 		font-size: 16px;

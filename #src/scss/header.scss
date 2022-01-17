@@ -7,10 +7,23 @@
 	height: 100%;
 	display: flex;
 	border-bottom: #cecece solid 1px;
-	transform: translateX(10px);
+	
 	&__plug{
-		width: 250px;
-
+		width: 261.5px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+	&__plug-username{
+		font-weight: 600;
+		color: rgb(169, 38, 38);
+		font-size: 18px;
+	}
+	&__plug-logout-btn{
+		background: none;
+		font-weight: 600;
+		color: rgb(36, 22, 138);
+		font-size: 18px;
 	}
 
 	&__list {

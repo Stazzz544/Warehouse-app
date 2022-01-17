@@ -3,7 +3,7 @@ import { getAuth,
 			createUserWithEmailAndPassword, 
 			signInWithEmailAndPassword, 
 			updateProfile,
-			browserSessionPersistence,
+			browserLocalPersistence,
 			setPersistence,
 			signOut,
 			onAuthStateChanged
@@ -29,13 +29,15 @@ export function regisration(startApp) {
 	createUserWithEmailAndPassword(auth, formData.email, formData.password)
 	.then((userCredential) => {
 	  // Signed in 
+	  
 	  const user = userCredential.user;
 	  console.log('user created')
 	  formData.authForm.classList.remove('active')
 	})
 	.then(() => {
 		updateUserProfile(formData.name);
-		startApp();
+		startApp(formData.name);
+		//showUserAndLogout(user.displayName)
 	})
 	.catch((error) => {
 	  const errorCode = error.code;
@@ -62,8 +64,8 @@ export function login(startApp) {
 	const authForm = document.querySelector('.auth')
 
 	const auth = getAuth();
-setPersistence(auth, browserSessionPersistence)
-  .then(() => {
+		setPersistence(auth, browserLocalPersistence)
+		.then(() => {
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even
     // if a user forgets to sign out.
@@ -75,7 +77,7 @@ setPersistence(auth, browserSessionPersistence)
 		const user = userCredential.user;
 		authForm.classList.remove('active')
 		startApp()
-		showUserAndLogoutBtn(user.displayName)
+		//showUserAndLogout(user.displayName)
 		// ...
 	 })
 	 .catch((error) => {
@@ -94,9 +96,9 @@ setPersistence(auth, browserSessionPersistence)
 
 export function logout() {
 	signOut(auth).then(() => {
-		// Sign-out successful.
+		console.log('login succesfull')
 	 }).catch((error) => {
-		// An error happened.
+		console.log('logout error: ', error)
 	 });
 }
 
@@ -107,14 +109,19 @@ export function logout() {
 
 export function getUserProfile(){
 	const user = auth.currentUser;
+	let displayName = user.displayName;
+	let email = user.email;
+	let photoURL = user.photoURL;
+	let emailVerified = user.emailVerified;
+	let uid = user.uid;
 
 	if (user !== null) {
-
-		const displayName = user.displayName;
-		const email = user.email;
-		const photoURL = user.photoURL;
-		const emailVerified = user.emailVerified;
-		const uid = user.uid;
+		
+		displayName = user.displayName;
+		email = user.email;
+		photoURL = user.photoURL;
+		emailVerified = user.emailVerified;
+		uid = user.uid;
 	//============================
 		user.providerData.forEach((profile) => {
 			console.log("Sign-in provider: " + profile.providerId);
@@ -125,6 +132,7 @@ export function getUserProfile(){
 		});
 	}
 	console.log(user)
+	return displayName
 }
 
 function getFieldsRegistrationForm(){
@@ -137,23 +145,13 @@ function getFieldsRegistrationForm(){
 	}
 }
 
-export function isLoginBefore(startApp) {
-	
-	const user = auth.currentUser;
-	console.log(user)
-	if (user !== null) {
-		startApp();
-		const formData = getFieldsRegistrationForm();
-		formData.authForm.classList.remove('active');
-	};
-};
 
-function showUserAndLogoutBtn(userName){
+export function showUserAndLogout(userName){
 	const out = document.querySelector('.navigation__plug')
 	out.innerHTML = `
-	<div>${userName}</div>
-	<div>
-		<button id="logout">Выйти</button>
+	<div class="navigation__plug-username">${userName}</div>
+	<div class="navigation__plug-logout">
+		<button class="navigation__plug-logout-btn" id="logout">Выйти</button>
 	</div>
 	`;
 	document.querySelector('#logout').addEventListener('click', () => {
@@ -162,10 +160,15 @@ function showUserAndLogoutBtn(userName){
 	})
 }
 
-export function autoLoginUser(){
+export function autoLoginUser(startApp){
+	
+
 	onAuthStateChanged(auth, (user) => {
 		if (user) {
-		  getUserProfile()
+			getUserProfile()
+			startApp();
+			const formData = getFieldsRegistrationForm();
+			formData.authForm.classList.remove('active');
 		} else {
 			console.log('no user')
 		}
