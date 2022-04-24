@@ -48,7 +48,17 @@ export const app = initializeApp(firebaseConfig)
 export const auth = getAuth();
 export const db = getDatabase();
 
+const authForm = document.querySelector('.auth') 
+
+function bodyLock() {
+	const body = document.querySelector('body')
+	body.classList.add('body-lock')
+}
+
+
+
 isWebp();
+bodyLock()
 select();
 autoLoginUser(startApp);//if user entered before
 
@@ -210,6 +220,7 @@ document.querySelector('#signInBtn').onclick = () => login(startApp)
 }
 
 async function startApp(regName){
+	bodyUnLock();
 	state = await getAllDataFromBase()// асинхронная функция
 	getUserProfile() ? showUserAndLogout(getUserProfile()) : showUserAndLogout(regName)
 
@@ -224,7 +235,10 @@ async function startApp(regName){
 
 
 
-
+function bodyUnLock() {
+	const body = document.querySelector('body')
+	body.classList.remove('body-lock')
+}
 
 
 

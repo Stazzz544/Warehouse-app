@@ -39,22 +39,29 @@
 	&__buttons-wrapper {
 		margin-top: 40px;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 	&__btn{
-		width: 165px;
+		width: 170px;
 		padding: 10px 0px;
 		font-size: 16px;
-		background: rgb(72, 182, 76);
+		background: rgb(61, 146, 63);
 		transition: all 0.4s;
+		color: #ffffff;
+		border-radius: 5px;
 	}
 	&__btn:hover{
-		background: rgb(41, 236, 47);
+		background: rgb(29, 173, 34);
 	}
 
 	&__out-wrapper {
 		line-height: 25px;
 		margin-top: 30px;
+	}
+
+	&__out-suggest{
+		margin-top: 10px;
+		font-style: italic;
 	}
 
 	&__out {
@@ -69,3 +76,4 @@
 	justify-content: center;
 	align-items: center;
 }
+

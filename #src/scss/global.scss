@@ -19,6 +19,10 @@ main{
 	flex: 1 1;
 }
 
+.body-lock{
+	overflow: hidden;
+}
+
 .main-wrapper{
 	display: flex;
 	flex-direction: column;

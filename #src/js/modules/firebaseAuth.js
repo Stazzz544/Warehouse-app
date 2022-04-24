@@ -37,6 +37,7 @@ export function regisration(startApp) {
 	.then(() => {
 		updateUserProfile(formData.name);
 		startApp(formData.name);
+		
 		//showUserAndLogout(user.displayName)
 	})
 	.catch((error) => {
@@ -76,6 +77,7 @@ export function login(startApp) {
 		// Signed in 
 		const user = userCredential.user;
 		authForm.classList.remove('active')
+
 		startApp()
 		//showUserAndLogout(user.displayName)
 		// ...

@@ -176,6 +176,10 @@ main {
           flex: 1 1;
 }
 
+.body-lock {
+  overflow: hidden;
+}
+
 .main-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -862,24 +866,31 @@ input[type=number] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .auth__btn {
-  width: 165px;
+  width: 170px;
   padding: 10px 0px;
   font-size: 16px;
-  background: #48b64c;
+  background: #3d923f;
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   transition: all 0.4s;
+  color: #ffffff;
+  border-radius: 5px;
 }
 .auth__btn:hover {
-  background: #29ec2f;
+  background: #1dad22;
 }
 .auth__out-wrapper {
   line-height: 25px;
   margin-top: 30px;
+}
+.auth__out-suggest {
+  margin-top: 10px;
+  font-style: italic;
 }
 .auth__out {
   text-align: center;
